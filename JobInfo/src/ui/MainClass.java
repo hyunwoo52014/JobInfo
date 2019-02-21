@@ -3,6 +3,7 @@
  */
 package ui;
 
+import java.net.URI;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
@@ -14,6 +15,7 @@ public class MainClass extends JFrame{
 
 	private SettingPanel sp = null;
 	private ViewPanel vp = null;
+	private URI url = null;
 	/**
 	 * 
 	 */
