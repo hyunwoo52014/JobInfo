@@ -37,31 +37,31 @@ public class SettingPanel extends JPanel{
 			this.jp[i].add(ce[i]);
 			this.add(jp[i]);
 		}
-		ce[0].add("정규직");ce[0].add("계약직");ce[0].add("병역특례");ce[0].add("인턴직");ce[0].add("아르바이트");
-		ce[0].add("파견직");ce[0].add("해외취업");ce[0].add("위촉직");ce[0].add("프리랜서");ce[0].add("계약직 (정규직 전환가능)");
-		ce[0].add("인턴직 (정규직 전환가능)");ce[0].add("교육생");ce[0].add("별정직");ce[0].add("파트");ce[0].add("전임");
-		ce[0].add("기간제");ce[0].add("무기계약직");ce[0].add("전문계약직");ce[0].add("전문연구요원");ce[0].add("산업기능요원");
-		ce[0].add("현역");ce[0].add("	보충역");
+		ce[0].add(DictionaryForInfo.jobtype1.getName());ce[0].add(DictionaryForInfo.jobtype2.getName());ce[0].add(DictionaryForInfo.jobtype3.getName());ce[0].add(DictionaryForInfo.jobtype4.getName());ce[0].add(DictionaryForInfo.jobtype5.getName());
+		ce[0].add(DictionaryForInfo.jobtype6.getName());ce[0].add(DictionaryForInfo.jobtype7.getName());ce[0].add(DictionaryForInfo.jobtype8.getName());ce[0].add(DictionaryForInfo.jobtype9.getName());ce[0].add(DictionaryForInfo.jobtype10.getName());
+		ce[0].add(DictionaryForInfo.jobtype11.getName());ce[0].add(DictionaryForInfo.jobtype12.getName());ce[0].add(DictionaryForInfo.jobtype13.getName());ce[0].add(DictionaryForInfo.jobtype14.getName());ce[0].add(DictionaryForInfo.jobtype15.getName());
+		ce[0].add(DictionaryForInfo.jobtype16.getName());ce[0].add(DictionaryForInfo.jobtype17.getName());ce[0].add(DictionaryForInfo.jobtype18.getName());ce[0].add(DictionaryForInfo.jobtype19.getName());ce[0].add(DictionaryForInfo.jobtype20.getName());
+		ce[0].add(DictionaryForInfo.jobtype21.getName());ce[0].add(DictionaryForInfo.jobtype22.getName());
 		
-		ce[1].add("학력무관");ce[1].add("고등학교졸업");ce[1].add("대학졸업(2,3년)");ce[1].add("대학교졸업(4년)");ce[1].add("석사졸업");
-		ce[1].add("박사졸업");ce[1].add("고등학교졸업이상");ce[1].add("대학졸업(2,3년)이상");ce[1].add("대학교졸업(4년)이상");ce[1].add("석사졸업이상");
+		ce[1].add(DictionaryForInfo.edu_lv0.getName());ce[1].add(DictionaryForInfo.edu_lv1.getName());ce[1].add(DictionaryForInfo.edu_lv2.getName());ce[1].add(DictionaryForInfo.edu_lv3.getName());ce[1].add(DictionaryForInfo.edu_lv4.getName());
+		ce[1].add(DictionaryForInfo.edu_lv5.getName());ce[1].add(DictionaryForInfo.edu_lv6.getName());ce[1].add(DictionaryForInfo.edu_lv7.getName());ce[1].add(DictionaryForInfo.edu_lv8.getName());ce[1].add(DictionaryForInfo.edu_lv9.getName());
 		
-		ce[2].add("회사내규에 따름");ce[2].add("1,400 만원 이하");ce[2].add("1,400~1,600만원");ce[2].add("1,600~1,800만원");ce[2].add("1,800~2,000만원");
-		ce[2].add("2,000~2,200만원");ce[2].add("2,200~2,400만원");ce[2].add("2,400~2,600만원");ce[2].add("2,600~2,800만원");ce[2].add("2,800~3,000만원");
-		ce[2].add("3,000~3,200만원");ce[2].add("3,200~3,400만원");ce[2].add("3,400~3,600만원");ce[2].add("3,600~3,800만원");ce[2].add("3,800~4,000만원");
-		ce[2].add("4,000~5,000만원");ce[2].add("5,000~6,000만원");ce[2].add("6,000~7,000만원");ce[2].add("7,000~8,000만원");ce[2].add("8,000~9,000만원");
-		ce[2].add("9,000~1억원");ce[2].add("1억원 이상");ce[2].add("면접후 결정");
+		ce[2].add(DictionaryForInfo.salary0.getName());ce[2].add(DictionaryForInfo.salary3.getName());ce[2].add(DictionaryForInfo.salary4.getName());ce[2].add(DictionaryForInfo.salary5.getName());ce[2].add(DictionaryForInfo.salary6.getName());
+		ce[2].add(DictionaryForInfo.salary7.getName());ce[2].add(DictionaryForInfo.salary8.getName());ce[2].add(DictionaryForInfo.salary9.getName());ce[2].add(DictionaryForInfo.salary10.getName());ce[2].add(DictionaryForInfo.salary11.getName());
+		ce[2].add(DictionaryForInfo.salary12.getName());ce[2].add(DictionaryForInfo.salary13.getName());ce[2].add(DictionaryForInfo.salary14.getName());ce[2].add(DictionaryForInfo.salary15.getName());ce[2].add(DictionaryForInfo.salary16.getName());
+		ce[2].add(DictionaryForInfo.salary17.getName());ce[2].add(DictionaryForInfo.salary18.getName());ce[2].add(DictionaryForInfo.salary19.getName());ce[2].add(DictionaryForInfo.salary20.getName());ce[2].add(DictionaryForInfo.salary21.getName());
+		ce[2].add(DictionaryForInfo.salary22.getName());ce[2].add(DictionaryForInfo.salary23.getName());ce[2].add(DictionaryForInfo.salary99.getName());
 		
-		ce[3].add("서울전체");ce[3].add("경기전체");
+		ce[3].add(DictionaryForInfo.loc_cd101000.getName());ce[3].add(DictionaryForInfo.loc_cd102000.getName());
 		
-		ce[4].add("솔루션·SI·ERP·CRM");ce[4].add("웹에이젼시");ce[4].add("쇼핑몰·오픈마켓");ce[4].add("포털·인터넷·컨텐츠");
-		ce[4].add("네트워크·통신·모바일");ce[4].add("하드웨어·장비");ce[4].add("정보보안·백신");ce[4].add("IT컨설팅");
-		ce[4].add("게임");
+		ce[4].add(DictionaryForInfo.ind_cd301.getName());ce[4].add(DictionaryForInfo.ind_cd302.getName());ce[4].add(DictionaryForInfo.ind_cd304.getName());ce[4].add(DictionaryForInfo.ind_cd305.getName());
+		ce[4].add(DictionaryForInfo.ind_cd306.getName());ce[4].add(DictionaryForInfo.ind_cd307.getName());ce[4].add(DictionaryForInfo.ind_cd308.getName());ce[4].add(DictionaryForInfo.ind_cd313.getName());
+		ce[4].add(DictionaryForInfo.ind_cd314.getName());
 		
-		ce[5].add("웹마스터·QA·테스터");ce[5].add("서버·네트워크·보안");ce[5].add("웹기획·PM");ce[5].add("웹개발");ce[5].add("게임·Game");
-		ce[5].add("컨텐츠·사이트운영");ce[5].add("응용프로그램개발");ce[5].add("시스템개발");ce[5].add("ERP·시스템분석·설계");ce[5].add("통신·모바일");
-		ce[5].add("하드웨어·소프트웨어");ce[5].add("웹디자인");ce[5].add("퍼블리싱·UI개발");ce[5].add("동영상·편집·코덱");ce[5].add("IT·디자인·컴퓨터교육");
-		ce[5].add("데이터베이스·DBA");ce[5].add("인공지능(AI)·빅데이터");
+		ce[5].add(DictionaryForInfo.job_category401.getName());ce[5].add(DictionaryForInfo.job_category402.getName());ce[5].add(DictionaryForInfo.job_category403.getName());ce[5].add(DictionaryForInfo.job_category404.getName());ce[5].add(DictionaryForInfo.job_category405.getName());
+		ce[5].add(DictionaryForInfo.job_category406.getName());ce[5].add(DictionaryForInfo.job_category407.getName());ce[5].add(DictionaryForInfo.job_category408.getName());ce[5].add(DictionaryForInfo.job_category409.getName());ce[5].add(DictionaryForInfo.job_category410.getName());
+		ce[5].add(DictionaryForInfo.job_category411.getName());ce[5].add(DictionaryForInfo.job_category412.getName());ce[5].add(DictionaryForInfo.job_category413.getName());ce[5].add(DictionaryForInfo.job_category414.getName());ce[5].add(DictionaryForInfo.job_category415.getName());
+		ce[5].add(DictionaryForInfo.job_category416.getName());ce[5].add(DictionaryForInfo.job_category417.getName());
 		
 	}
 	
