@@ -79,7 +79,6 @@ public class ViewPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource().equals(jb[0])) {
-			System.out.println("Å¬¸¯");
 			if(this.xi == null) {
 				this.xi = new XMLInterpreter();
 			}
