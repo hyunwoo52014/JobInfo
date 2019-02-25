@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import openapi.generator.OpenApiUrlReader;
 import xml.Interpreter.XMLInterpreter;
@@ -19,12 +20,13 @@ import xml.Interpreter.XMLInterpreter;
 public class ViewPanel extends JPanel implements ActionListener{
 
 	private JTable jtb = null;
+	private DefaultTableModel model = null;
 	private JScrollPane jsp = null;
 	private JLabel[] jl = null;
 	private JTextField[] jf = null;
 	private JPanel[] jp = null;
 	private JButton[] jb = null;
-	private String[] header = {"순서","기업명","공고제목","지역","근무형태","모집인원","경력","연봉"};
+	private String[] header = {"순서","기업명","공고제목","지역","근무형태","경력","연봉"};
 	private String[][] content = {};
 	private String[] arguments = null;
 	private OpenApiUrlReader oaur= null;
@@ -42,7 +44,8 @@ public class ViewPanel extends JPanel implements ActionListener{
 		this.jp = new JPanel[] {new JPanel(), new JPanel(), new JPanel()};
 		this.jl = new JLabel[] {new JLabel("키워드")};
 		this.jf = new JTextField[] {new JTextField(20)};
-		this.jtb = new JTable(content,header);
+		this.model = new DefaultTableModel(content,header);
+		this.jtb = new JTable(this.model);
 		this.jb = new JButton[] {new JButton("검색"), new JButton("이전페이지"),new JButton("다음페이지"), new JButton("직접입력"), new JButton("상세"), new JButton("종료")};
 
 		
@@ -138,7 +141,7 @@ public class ViewPanel extends JPanel implements ActionListener{
 		this.oaur.generate();
 		this.xi.init(this.oaur.getXmlData());
 		String[][] getDatas = this.xi.getjobs();
-		System.out.println(getDatas);
-		this.jtb = new JTable(getDatas,header);
+		this.model.setDataVector(getDatas, header);
+		this.model.fireTableDataChanged();
 	}
 }

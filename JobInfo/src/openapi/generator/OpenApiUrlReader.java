@@ -25,7 +25,7 @@ public class OpenApiUrlReader {
 			this.xmldata = new StringBuffer();
 			String temp = null;
 			while((temp = br.readLine())!=null) {
-				this.xmldata.append(temp);
+				this.xmldata.append(temp).trimToSize();
 			}
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
