@@ -1,103 +1,212 @@
 package ui;
 
-public enum DictionaryForInfo {
-	edu_lv0(0,"학력무관"),
-	edu_lv1(1,"고등학교졸업"),
-	edu_lv2(2,"대학졸업(2,3년)"),
-	edu_lv3(3,"대학교졸업(4년)"),
-	edu_lv4(4,"석사졸업"),
-	edu_lv5(5,"박사졸업"),
-	edu_lv6(6,"고등학교졸업이상"),
-	edu_lv7(7,"대학졸업(2,3년)이상"),
-	edu_lv8(8,"대학교졸업(4년)이상"),
-	edu_lv9(9,"석사졸업이상"),
-	ind_cd301(301,"솔루션·SI·ERP·CRM"),
-	ind_cd302(302,"웹에이젼시"),
-	ind_cd304(304,"쇼핑몰·오픈마켓"),
-	ind_cd305(305,"포털·인터넷·컨텐츠"),
-	ind_cd306(306,"네트워크·통신·모바일"),
-	ind_cd307(307,"하드웨어·장비"),
-	ind_cd308(308,"정보보안·백신"),
-	ind_cd313(313,"IT컨설팅"),
-	ind_cd314(314,"게임"),
-	job_category401(401,"웹마스터·QA·테스터"),
-	job_category402(402,"서버·네트워크·보안"),
-	job_category403(403,"웹기획·PM"),
-	job_category404(404,"웹개발"),
-	job_category405(405,"게임·Game"),
-	job_category406(406,"컨텐츠·사이트운영"),
-	job_category407(407,"응용프로그램개발"),
-	job_category408(408,"시스템개발"),
-	job_category409(409,"ERP·시스템분석·설계"),
-	job_category410(410,"통신·모바일"),
-	job_category411(411,"하드웨어·소프트웨어"),
-	job_category412(412,"웹디자인"),
-	job_category413(413,"퍼블리싱·UI개발"),
-	job_category414(414,"동영상·편집·코덱"),
-	job_category415(415,"IT·디자인·컴퓨터교육"),
-	job_category416(416,"데이터베이스·DBA"),
-	job_category417(417,"인공지능(AI)·빅데이터"),
-	jobtype1(1,"정규직"),
-	jobtype2(2,"계약직"),
-	jobtype3(3,"병역특례"),
-	jobtype4(4,"인턴직"),
-	jobtype5(5,"아르바이트"),
-	jobtype6(6,"파견직"),
-	jobtype7(7,"해외취업"),
-	jobtype8(8,"위촉직"),
-	jobtype9(9,"프리랜서"),
-	jobtype10(10,"계약직 (정규직 전환가능)"),
-	jobtype11(11,"인턴직 (정규직 전환가능)"),
-	jobtype12(12,"교육생"),
-	jobtype13(13,"별정직"),
-	jobtype14(14,"파트"),
-	jobtype15(15,"전임"),
-	jobtype16(16,"기간제"),
-	jobtype17(17,"무기계약직"),
-	jobtype18(18,"전문계약직"),
-	jobtype19(19,"전문연구요원"),
-	jobtype20(20,"산업기능요원"),
-	jobtype21(21,"현역"),
-	jobtype22(22,"보충역"),
-	loc_cd101000(101000,"서울전체"),
-	loc_cd102000(102000,"경기전체"),
-	salary0(0,"회사내규에 따름"),
-	salary3(3,"1,400 만원 이하"),
-	salary4(4,"1,400~1,600만원"),
-	salary5(5,"1,600~1,800만원"),
-	salary6(6,"1,800~2,000만원"),
-	salary7(7,"2,000~2,200만원"),
-	salary8(8,"2,200~2,400만원"),
-	salary9(9,"2,400~2,600만원"),
-	salary10(10,"2,600~2,800만원"),
-	salary11(11,"2,800~3,000만원"),
-	salary12(12,"3,000~3,200만원"),
-	salary13(13,"3,200~3,400만원"),
-	salary14(14,"3,400~3,600만원"),
-	salary15(15,"3,600~3,800만원"),
-	salary16(16,"3,800~4,000만원"),
-	salary17(17,"4,000~5,000만원"),
-	salary18(18,"5,000~6,000만원"),
-	salary19(19,"6,000~7,000만원"),
-	salary20(20,"7,000~8,000만원"),
-	salary21(21,"8,000~9,000만원"),
-	salary22(22,"9,000~1억원"),
-	salary23(23,"1억원 이상"),
-	salary99(99,"면접후 결정");
+import java.util.HashMap;
+import java.util.Map;
+
+public class DictionaryForInfo {
+	private Map<Integer, String> edu_lv = new HashMap<Integer, String>();
+	private Map<Integer, String> ind_cd = new HashMap<Integer, String>();
+	private Map<Integer, String> job_category = new HashMap<Integer, String>();
+	private Map<Integer, String> jobtype = new HashMap<Integer, String>();
+	private Map<Integer, String> loc_cd = new HashMap<Integer, String>();
+	private Map<Integer, String> salary = new HashMap<Integer, String>();
 	
-	private int index;
-	private String name;
-	
-	private DictionaryForInfo(int index, String name) {
-		this.index = index;
-		this.name = name;
+	public DictionaryForInfo() {
+		edu_lv_init();
+		ind_cd_init();
+		job_category_init();
+		jobtype_init();
+		loc_cd_init();
+		salary_init();
+	}
+
+	private void salary_init() {
+		// TODO Auto-generated method stub
+		this.salary.put(0,"회사내규에 따름");
+		this.salary.put(3,"1,400 만원 이하");
+		this.salary.put(4,"1,400~1,600만원");
+		this.salary.put(5,"1,600~1,800만원");
+		this.salary.put(6,"1,800~2,000만원");
+		this.salary.put(7,"2,000~2,200만원");
+		this.salary.put(8,"2,200~2,400만원");
+		this.salary.put(9,"2,400~2,600만원");
+		this.salary.put(10,"2,600~2,800만원");
+		this.salary.put(11,"2,800~3,000만원");
+		this.salary.put(12,"3,000~3,200만원");
+		this.salary.put(13,"3,200~3,400만원");
+		this.salary.put(14,"3,400~3,600만원");
+		this.salary.put(15,"3,600~3,800만원");
+		this.salary.put(16,"3,800~4,000만원");
+		this.salary.put(17,"4,000~5,000만원");
+		this.salary.put(18,"5,000~6,000만원");
+		this.salary.put(19,"6,000~7,000만원");
+		this.salary.put(20,"7,000~8,000만원");
+		this.salary.put(21,"8,000~9,000만원");
+		this.salary.put(22,"9,000~1억원");
+		this.salary.put(23,"1억원 이상");
+		this.salary.put(99,"면접후 결정");
+	}
+
+	private void loc_cd_init() {
+		// TODO Auto-generated method stub
+		this.loc_cd.put(101000,"서울전체");
+		this.loc_cd.put(102000,"경기전체");
 	}
 	
-	public int getIndex() {
-		return index;
+	private void jobtype_init() {
+		// TODO Auto-generated method stub
+		this.jobtype.put(1,"정규직");
+		this.jobtype.put(2,"계약직");
+		this.jobtype.put(3,"병역특례");
+		this.jobtype.put(4,"인턴직");
+		this.jobtype.put(5,"아르바이트");
+		this.jobtype.put(6,"파견직");
+		this.jobtype.put(7,"해외취업");
+		this.jobtype.put(8,"위촉직");
+		this.jobtype.put(9,"프리랜서");
+		this.jobtype.put(10,"계약직 (정규직 전환가능)");
+		this.jobtype.put(11,"인턴직 (정규직 전환가능)");
+		this.jobtype.put(12,"교육생");
+		this.jobtype.put(13,"별정직");
+		this.jobtype.put(14,"파트");
+		this.jobtype.put(15,"전임");
+		this.jobtype.put(16,"기간제");
+		this.jobtype.put(17,"무기계약직");
+		this.jobtype.put(18,"전문계약직");
+		this.jobtype.put(19,"전문연구요원");
+		this.jobtype.put(20,"산업기능요원");
+		this.jobtype.put(21,"현역");
+		this.jobtype.put(22,"보충역");
 	}
 	
-	public String getName() {
-		return name;
+	private void job_category_init() {
+		// TODO Auto-generated method stub
+		this.job_category.put(401,"웹마스터·QA·테스터");
+		this.job_category.put(402,"서버·네트워크·보안");
+		this.job_category.put(403,"웹기획·PM");
+		this.job_category.put(404,"웹개발");
+		this.job_category.put(405,"게임·Game");
+		this.job_category.put(406,"컨텐츠·사이트운영");
+		this.job_category.put(407,"응용프로그램개발");
+		this.job_category.put(408,"시스템개발");
+		this.job_category.put(409,"ERP·시스템분석·설계");
+		this.job_category.put(410,"통신·모바일");
+		this.job_category.put(411,"하드웨어·소프트웨어");
+		this.job_category.put(412,"웹디자인");
+		this.job_category.put(413,"퍼블리싱·UI개발");
+		this.job_category.put(414,"동영상·편집·코덱");
+		this.job_category.put(415,"IT·디자인·컴퓨터교육");
+		this.job_category.put(416,"데이터베이스·DBA");
+		this.job_category.put(417,"인공지능(AI)·빅데이터");
 	}
+	
+	private void ind_cd_init() {
+		// TODO Auto-generated method stub
+		this.ind_cd.put(301,"솔루션·SI·ERP·CRM");
+		this.ind_cd.put(302,"웹에이젼시");
+		this.ind_cd.put(304,"쇼핑몰·오픈마켓");
+		this.ind_cd.put(305,"포털·인터넷·컨텐츠");
+		this.ind_cd.put(306,"네트워크·통신·모바일");
+		this.ind_cd.put(307,"하드웨어·장비");
+		this.ind_cd.put(308,"정보보안·백신");
+		this.ind_cd.put(313,"IT컨설팅");
+		this.ind_cd.put(314,"게임");
+	}
+	
+	private void edu_lv_init() {
+		this.edu_lv.put(0,"학력무관");
+		this.edu_lv.put(1,"고등학교졸업");
+		this.edu_lv.put(2,"대학졸업(2,3년)");
+		this.edu_lv.put(3,"대학교졸업(4년)");
+		this.edu_lv.put(4,"석사졸업");
+		this.edu_lv.put(5,"박사졸업");
+		this.edu_lv.put(6,"고등학교졸업이상");
+		this.edu_lv.put(7,"대학졸업(2,3년)이상");
+		this.edu_lv.put(8,"대학교졸업(4년)이상");
+		this.edu_lv.put(9,"석사졸업이상");
+	}
+
+	
+	public String getEduLvValue(int index) {
+		return this.edu_lv.get(index);
+	}
+	
+	public int getEduLvKey(String value) {
+		for(Object o : this.edu_lv.keySet()) {
+			if(this.edu_lv.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+	
+
+	
+	
+
+	public String getIndCdValue(int index) {
+		return this.ind_cd.get(index);
+	}
+
+	public int getIndCdKey(String value) {
+		for(Object o : this.ind_cd.keySet()) {
+			if(this.ind_cd.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+
+	public String getJobCategoryValue(int index) {
+		return this.job_category.get(index);
+	}
+
+	public int getJobCategoryKey(String value) {
+		for(Object o : this.job_category.keySet()) {
+			if(this.job_category.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+
+	public String getJobTypeValue(int index) {
+		return this.jobtype.get(index);
+	}
+	
+	public int getJobTypeKey(String value) {
+		for(Object o : this.jobtype.keySet()) {
+			if(this.jobtype.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+
+	public String getLocCdValue(int index) {
+		return this.loc_cd.get(index);
+	}
+
+	public int getLocCdKey(String value) {
+		for(Object o : this.loc_cd.keySet()) {
+			if(this.loc_cd.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+
+	public String getSalaryValue(int index) {
+		return this.salary.get(index);
+	}
+	
+	public int getSalaryKey(String value) {
+		for(Object o : this.salary.keySet()) {
+			if(this.salary.get(o).equals(value)) {
+				return Integer.valueOf(o.toString());
+			}
+		}
+		return -1;
+	}
+
 }
