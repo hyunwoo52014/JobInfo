@@ -32,7 +32,7 @@ public class ViewPanel extends JPanel implements ActionListener{
 	private OpenApiUrlReader oaur= null;
 	private XMLInterpreter xi = null;
 	private SettingPanel sp = null;
-
+	private boolean check = false;
 	/**
 	 * 
 	 */
@@ -88,26 +88,28 @@ public class ViewPanel extends JPanel implements ActionListener{
 			searchJobNListing();
 		} else if(e.getSource().equals(jb[1])) {
 			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(6)));
+				int start = Integer.valueOf((this.arguments[5].substring(7)));
 				if(start < 0) {
 					JOptionPane.showMessageDialog(null, "첫번째 페이지입니다.");
 				} else {
 					start -= 1;
 					this.arguments[5] = "&count="+String.valueOf(start);
+					this.check = true;
 					searchJobNListing();
 				}
 			}
 		} else if(e.getSource().equals(jb[2])) {
 			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(6)));
+				int start = Integer.valueOf((this.arguments[5].substring(7)));
 				start +=1;
 				this.arguments[5] = "&count="+String.valueOf(start);
+				this.check = true;
 				searchJobNListing();
 				
 			}
 		} else if(e.getSource().equals(jb[3])) {
 			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(6)));
+				int start = Integer.valueOf((this.arguments[5].substring(7)));
 				if(start < 0) {
 					
 				} else {
@@ -126,18 +128,24 @@ public class ViewPanel extends JPanel implements ActionListener{
 	}
 	
 	private void searchJobNListing() {
-		String temp = "http://api.saramin.co.kr/job-search?";
+		String urlstring = "http://api.saramin.co.kr/job-search?";
 		if(this.arguments == null) {
 			this.arguments = this.sp.getArguments();
-			for(int i=0; i<this.arguments.length; i++) {
-				temp += this.arguments[i];
-			}
+		} else if(this.check == true) {
+			this.check = false;
 		} else {
-			for(int i=0; i<this.arguments.length; i++) {
-				temp += this.arguments[i];
+			String[] temp = this.sp.getArguments();
+			for(int i=0; i<arguments.length; i++) {
+				if(this.arguments[i] != temp[i]) {
+					this.arguments[i] = temp[i];
+				}
 			}
 		}
-		this.oaur.setUrl(temp);
+		
+		for(int i=0; i<this.arguments.length; i++) {
+			urlstring += this.arguments[i];
+		}
+		this.oaur.setUrl(urlstring);
 		this.oaur.generate();
 		this.xi.init(this.oaur.getXmlData());
 		String[][] getDatas = this.xi.getjobs();

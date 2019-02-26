@@ -42,4 +42,20 @@ public class MainClass extends JFrame{
 		mc.setVisible(true);
 		mc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+
+	public SettingPanel getSp() {
+		return sp;
+	}
+
+	public void setSp(SettingPanel sp) {
+		this.sp = sp;
+	}
+
+	public ViewPanel getVp() {
+		return vp;
+	}
+
+	public void setVp(ViewPanel vp) {
+		this.vp = vp;
+	}
 }
