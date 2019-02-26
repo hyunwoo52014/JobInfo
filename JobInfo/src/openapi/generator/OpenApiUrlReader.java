@@ -5,55 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 
 public class OpenApiUrlReader {
-	private URL url = null;
-	private HttpURLConnection huc = null;
-	private BufferedReader br = null;
-	private StringBuffer xmldata = null;
-	public OpenApiUrlReader() {
-	}
-	
-	public OpenApiUrlReader(String str) {
-		setUrl(str);
-	}
-	
-	public void generate() {
+
+	public String generate(String str) {
+		HttpURLConnection huc = null;
+		BufferedReader br = null;
+		StringBuffer xmldata = null;
 		try {
-			this.br = new BufferedReader(new InputStreamReader(this.huc.getInputStream(),"UTF-8"));
-			this.xmldata = new StringBuffer();
+			URL url = new URL(str);
+			huc = (HttpURLConnection) url.openConnection();
+			huc.setRequestProperty("CONTENT-TYPE","text/xml");
+			huc.setRequestMethod("GET");
+			xmldata = new StringBuffer();
+			br = new BufferedReader(new InputStreamReader(huc.getInputStream(),"UTF-8"));
 			String temp = null;
 			while((temp = br.readLine())!=null) {
-				this.xmldata.append(temp).trimToSize();
+				xmldata.append(temp);
 			}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+				huc.disconnect();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-	}
-	
-	public String getXmlData() {
-		return this.xmldata.toString();
-	}
-
-	public void setUrl(String str) {
-		try {
-			this.url = new URL(str);
-			this.huc = (HttpURLConnection) this.url.openConnection();
-			this.huc.setRequestProperty("CONTENT-TYPE","text/xml");
-			this.huc.setRequestMethod("GET");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public String getUrl() {
-		return this.url.toString();
+		return xmldata.toString();
 	}
 }

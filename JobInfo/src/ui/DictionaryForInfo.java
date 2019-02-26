@@ -139,10 +139,6 @@ public class DictionaryForInfo {
 		}
 		return -1;
 	}
-	
-
-	
-	
 
 	public String getIndCdValue(int index) {
 		return this.ind_cd.get(index);

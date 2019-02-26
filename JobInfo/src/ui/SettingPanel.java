@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.Choice;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,8 +12,6 @@ public class SettingPanel extends JPanel{
 	private JPanel[] jp = null;
 	private JLabel[] jl = null;
 	private Choice[] ce= null;
-	private JButton[] jb = null;
-	
 	/**
 	 * 
 	 */
@@ -23,17 +20,22 @@ public class SettingPanel extends JPanel{
 	
 	public SettingPanel() {
 		this.dic = new DictionaryForInfo();
-		this.arguments = new String[] {"?jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category=","&start=0","&count=110"};
+		setArguments();
 		this.jp = new JPanel[] {new JPanel(), new JPanel(), new JPanel(), new JPanel(), new JPanel()};
 		this.jl = new JLabel[] {new JLabel("근무형태"), new JLabel("학력"), new JLabel("근무지"), new JLabel("산업/업종"), new JLabel("직업/직종")};
-		this.ce = new Choice[] {new Choice(), new Choice(), new Choice(), new Choice(), new Choice(), new Choice()};
-		this.jb = new JButton[] {};
+		this.ce = new Choice[] {new Choice(), new Choice(), new Choice(), new Choice(), new Choice()};
 		this.setLayout(new GridLayout(0,1));
 		for(int i=0; i<jp.length; i++) {
 			this.jp[i].add(jl[i]);
 			this.jp[i].add(ce[i]);
 			this.add(jp[i]);
 		}
+		
+		ce[0].add("선택없음");
+		ce[1].add("선택없음");
+		ce[2].add("선택없음");
+		ce[3].add("선택없음");
+		ce[4].add("선택없음");
 		
 		for(int i=1; i<=22; i++) {
 			ce[0].add(this.dic.getJobTypeValue(i));
@@ -60,13 +62,50 @@ public class SettingPanel extends JPanel{
 		
 	}
 	
-	public String[] getArguments() {
-		//"?jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category="
-		this.arguments[0] += this.dic.getJobTypeKey(ce[0].getSelectedItem());
-		this.arguments[1] += this.dic.getEduLvKey(ce[1].getSelectedItem());
-		this.arguments[2] += this.dic.getLocCdKey(ce[2].getSelectedItem());
-		this.arguments[3] += this.dic.getIndCdKey(ce[3].getSelectedItem());
-		this.arguments[4] += this.dic.getJobCategoryKey(ce[4].getSelectedItem());
-		return this.arguments;
+	public String apiUrlString(int start,int count) {
+		String temp = "http://api.saramin.co.kr/job-search";
+		setArguments();
+		//"?jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category=","&start=","&count="
+		if((this.dic.getJobTypeKey(ce[0].getSelectedItem().toString())) == -1){
+			this.arguments[0] = "";
+		} else {
+			this.arguments[0] += this.dic.getJobTypeKey(ce[0].getSelectedItem().toString());
+		}
+		if((this.dic.getEduLvKey(ce[1].getSelectedItem().toString())) == -1) {
+			this.arguments[1] = "";
+		} else {
+			this.arguments[1] += this.dic.getEduLvKey(ce[1].getSelectedItem().toString());
+		}
+		if((this.dic.getLocCdKey(ce[2].getSelectedItem().toString())) == -1) {
+			this.arguments[2] = "";
+		} else {
+			this.arguments[2] += this.dic.getLocCdKey(ce[2].getSelectedItem().toString());
+		}
+		if((this.dic.getIndCdKey(ce[3].getSelectedItem().toString())) == -1) {
+			this.arguments[3] = "";
+		} else {
+			this.arguments[3] += this.dic.getIndCdKey(ce[3].getSelectedItem().toString());
+		}
+		if((this.dic.getJobCategoryKey(ce[4].getSelectedItem().toString())) == -1) {
+			this.arguments[4] = "";
+		} else {
+			this.arguments[4] += this.dic.getJobCategoryKey(ce[4].getSelectedItem().toString());
+		}
+		this.arguments[5] += start;
+		this.arguments[6] += count;
+
+		for(int i=0; i<this.arguments.length; i++) {
+			if(i==0) {
+				temp+="?";
+			} else {
+				temp+="&";
+			}
+			temp += this.arguments[i];
+		}
+		return temp;
+	}
+
+	private void setArguments() {
+		this.arguments = new String[]{"jobtype=","edu_lv=","loc_cd=","ind_cd=","job_category=","start=","count="};
 	}
 }

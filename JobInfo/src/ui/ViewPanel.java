@@ -26,13 +26,12 @@ public class ViewPanel extends JPanel implements ActionListener{
 	private JTextField[] jf = null;
 	private JPanel[] jp = null;
 	private JButton[] jb = null;
-	private String[] header = {"순서","기업명","공고제목","지역","근무형태","경력","연봉"};
+	private String[] header = null;
 	private String[][] content = {};
-	private String[] arguments = null;
 	private OpenApiUrlReader oaur= null;
 	private XMLInterpreter xi = null;
 	private SettingPanel sp = null;
-	private boolean check = false;
+	private int start, count;
 	/**
 	 * 
 	 */
@@ -47,11 +46,14 @@ public class ViewPanel extends JPanel implements ActionListener{
 		this.model = new DefaultTableModel(content,header);
 		this.jtb = new JTable(this.model);
 		this.jb = new JButton[] {new JButton("검색"), new JButton("이전페이지"),new JButton("다음페이지"), new JButton("직접입력"), new JButton("상세"), new JButton("종료")};
+		this.header = new String[] {"순서","기업명","공고제목","지역","근무형태","경력","학력","연봉"};
+		this.start = 0;
+		this.count = 110;
 
-		
 		this.jp[0].add(this.jl[0]);
 		this.jp[0].add(this.jf[0]);
 		this.jp[0].add(this.jb[0]);
+		this.jb[0].addActionListener(this);
 		this.jp[0].setSize(getWidth(), 100);
 		add(this.jp[0],BorderLayout.NORTH);
 		
@@ -62,62 +64,39 @@ public class ViewPanel extends JPanel implements ActionListener{
 		this.jp[1].setSize(getWidth(), 500);
 		add(this.jp[1],BorderLayout.CENTER);
 		
-		for(int i=1; i < this.jb.length; i++) {
+		
+		for(int i=1; i<this.jb.length; i++) {
 			this.jp[2].add(this.jb[i]);
 			this.jb[i].addActionListener(this);
 		}
+		
 		this.jp[2].setSize(getWidth(),100);
 		add(this.jp[2],BorderLayout.SOUTH);
 		
 		this.oaur = new OpenApiUrlReader();
+		this.xi = new XMLInterpreter();
 		this.sp = sp;
 		
-		for(int i=0; i<this.jb.length; i++) {
-			this.jb[i].addActionListener(this);
-		}
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource().equals(jb[0])) {
-			if(this.xi == null) {
-				this.xi = new XMLInterpreter();
-			}
-			searchJobNListing();
+			this.start = 0; this.count = 110;
+			searchJobNListing(this.start,this.count);
 		} else if(e.getSource().equals(jb[1])) {
-			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(7)));
-				if(start < 0) {
-					JOptionPane.showMessageDialog(null, "첫번째 페이지입니다.");
-				} else {
-					start -= 1;
-					this.arguments[5] = "&count="+String.valueOf(start);
-					this.check = true;
-					searchJobNListing();
-				}
+			if(this.start<=0) {
+				JOptionPane.showMessageDialog(null, "맨 첫번째 페이지입니다.");
+			} else {
+				this.start -= 1;
+				searchJobNListing(this.start,this.count);
 			}
 		} else if(e.getSource().equals(jb[2])) {
-			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(7)));
-				start +=1;
-				this.arguments[5] = "&count="+String.valueOf(start);
-				this.check = true;
-				searchJobNListing();
-				
-			}
+			this.start+=1;
+			searchJobNListing(this.start,this.count);
 		} else if(e.getSource().equals(jb[3])) {
-			if(this.arguments != null || this.xi != null) {
-				int start = Integer.valueOf((this.arguments[5].substring(7)));
-				if(start < 0) {
-					
-				} else {
-					start +=1;
-					this.arguments[5] = "&count="+String.valueOf(start);
-					searchJobNListing();
-				}
-			}
+			
 		} else if(e.getSource().equals(jb[4])) {
 			
 		} else if(e.getSource().equals(jb[5])) {
@@ -127,29 +106,9 @@ public class ViewPanel extends JPanel implements ActionListener{
 		}
 	}
 	
-	private void searchJobNListing() {
-		String urlstring = "http://api.saramin.co.kr/job-search?";
-		if(this.arguments == null) {
-			this.arguments = this.sp.getArguments();
-		} else if(this.check == true) {
-			this.check = false;
-		} else {
-			String[] temp = this.sp.getArguments();
-			for(int i=0; i<arguments.length; i++) {
-				if(this.arguments[i] != temp[i]) {
-					this.arguments[i] = temp[i];
-				}
-			}
-		}
-		
-		for(int i=0; i<this.arguments.length; i++) {
-			urlstring += this.arguments[i];
-		}
-		this.oaur.setUrl(urlstring);
-		this.oaur.generate();
-		this.xi.init(this.oaur.getXmlData());
-		String[][] getDatas = this.xi.getjobs();
-		this.model.setDataVector(getDatas, header);
+	private void searchJobNListing(int start, int count) {
+		this.model.setRowCount(0);
+		this.model.setDataVector(this.xi.getjobs(this.oaur.generate(this.sp.apiUrlString(start,count))), header);
 		this.model.fireTableDataChanged();
 	}
 }
