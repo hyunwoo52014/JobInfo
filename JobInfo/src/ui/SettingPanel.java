@@ -72,14 +72,21 @@ public class SettingPanel extends JPanel{
 		}
 		this.arguments[5] += start;
 		this.arguments[6] += count;
-
+		
+		int check = 0;
 		for(int i=0; i<this.arguments.length; i++) {
-			if(i==0) {
-				temp+="?";
-			} else {
-				temp+="&";
+			if(this.arguments[i]!="") {
+				check = i;
+				break;
 			}
-			temp += this.arguments[i];
+		}
+		
+		for(int i=0; i<this.arguments.length; i++) {
+			if(this.arguments[i]!="" && i == check) {
+				temp += "?" + this.arguments[i];
+			} else if(this.arguments[i]!="" && i !=check){
+				temp += "&" + this.arguments[i];
+			}
 		}
 		System.out.println(temp);
 		return temp;
