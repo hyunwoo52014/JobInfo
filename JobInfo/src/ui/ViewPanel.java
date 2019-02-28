@@ -10,8 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
 import openapi.generator.OpenApiUrlReader;
@@ -24,6 +27,7 @@ public class ViewPanel extends JPanel implements ActionListener{
 	private JScrollPane jsp = null;
 	private JLabel[] jl = null;
 	private JTextField[] jf = null;
+	private JSpinner[] jspin = null;
 	private JPanel[] jp = null;
 	private JButton[] jb = null;
 	private String[] header = null;
@@ -39,44 +43,46 @@ public class ViewPanel extends JPanel implements ActionListener{
 	
 	public ViewPanel(SettingPanel sp) {
 		setLayout(new BorderLayout());
-		
+		setSize(this.getWidth(), this.getHeight());
 		this.jp = new JPanel[] {new JPanel(), new JPanel(), new JPanel()};
-		this.jl = new JLabel[] {new JLabel("키워드")};
+		this.jl = new JLabel[] {new JLabel("키워드"),new JLabel("페이지 번호"), new JLabel("리스트 개수")};
 		this.jf = new JTextField[] {new JTextField(20)};
+		this.jspin = new JSpinner [] {new JSpinner(new SpinnerNumberModel(0,0,1000,1)), new JSpinner(new SpinnerNumberModel(0,0,110,1))};
 		this.model = new DefaultTableModel(content,header);
 		this.jtb = new JTable(this.model);
-		this.jb = new JButton[] {new JButton("검색"), new JButton("이전페이지"),new JButton("다음페이지"), new JButton("직접입력"), new JButton("상세"), new JButton("종료")};
+		this.jb = new JButton[] {new JButton("검색"), new JButton("이전페이지"),new JButton("다음페이지"), new JButton("직접입력"), new JButton("공고상세"), new JButton("기업정보상세")};
 		this.header = new String[] {"순서","기업명","공고제목","지역","근무형태","경력","학력","연봉"};
 		this.start = 0;
 		this.count = 110;
 
 		this.jp[0].add(this.jl[0]);
 		this.jp[0].add(this.jf[0]);
+		this.jp[0].add(this.jl[1]);
+		this.jp[0].add(this.jspin[0]);
+		this.jp[0].add(this.jl[2]);
+		this.jp[0].add(this.jspin[1]);
 		this.jp[0].add(this.jb[0]);
 		this.jb[0].addActionListener(this);
-		this.jp[0].setSize(getWidth(), 100);
 		add(this.jp[0],BorderLayout.NORTH);
-		
-		this.jtb.getColumnModel().setColumnSelectionAllowed(true);
-		this.jtb.setPreferredScrollableViewportSize(new Dimension(1000,500));
+
+		this.jtb.setRowSelectionAllowed(true);
+		this.jtb.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.jsp = new JScrollPane(this.jtb);
+		this.jsp.setSize(this.jp[1].getHeight(),this.jp[1].getWidth());
 		this.jp[1].add(this.jsp);
-		this.jp[1].setSize(getWidth(), 500);
 		add(this.jp[1],BorderLayout.CENTER);
-		
 		
 		for(int i=1; i<this.jb.length; i++) {
 			this.jp[2].add(this.jb[i]);
 			this.jb[i].addActionListener(this);
 		}
-		
-		this.jp[2].setSize(getWidth(),100);
 		add(this.jp[2],BorderLayout.SOUTH);
 		
 		this.oaur = new OpenApiUrlReader();
 		this.xi = new XMLInterpreter();
 		this.sp = sp;
 		
+		System.out.println(super.getSize());
 	}
 	
 	@Override
@@ -100,7 +106,7 @@ public class ViewPanel extends JPanel implements ActionListener{
 		} else if(e.getSource().equals(jb[4])) {
 			
 		} else if(e.getSource().equals(jb[5])) {
-			
+			System.exit(0);
 		} else {
 			
 		}
@@ -108,7 +114,8 @@ public class ViewPanel extends JPanel implements ActionListener{
 	
 	private void searchJobNListing(int start, int count) {
 		this.model.setRowCount(0);
-		this.model.setDataVector(this.xi.getjobs(this.oaur.generate(this.sp.apiUrlString(start,count))), header);
+		this.xi.getjobs(this.oaur.generate(this.sp.apiUrlString(start,count)));
+		this.model.setDataVector(this.xi.getTabledata(), header);
 		this.model.fireTableDataChanged();
 	}
 }

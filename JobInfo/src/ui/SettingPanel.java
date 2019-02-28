@@ -61,7 +61,7 @@ public class SettingPanel extends JPanel{
 	
 	public String apiUrlString(int start,int count) {
 		String temp = "http://api.saramin.co.kr/job-search";
-		this.arguments = new String[] {"jobtype=","edu_lv=","loc_cd=","ind_cd=","job_category=","start=","count="};
+		this.arguments = new String[] {"job_type=","edu_lv=","loc_cd=","ind_cd=","job_category=","start=","count="};
 		//"?jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category=","&start=","&count="
 		for(int i=0; i<this.arguments.length-2; i++) {
 			if(ce[i].getSelectedItem() == "선택없음") {

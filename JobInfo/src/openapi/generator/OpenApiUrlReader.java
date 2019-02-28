@@ -20,7 +20,7 @@ public class OpenApiUrlReader {
 			br = new BufferedReader(new InputStreamReader(huc.getInputStream(),"UTF-8"));
 			String temp = null;
 			while((temp = br.readLine())!=null) {
-				xmldata.append(temp.trim());
+				xmldata.append(temp.trim().replaceAll("&gt;", ""));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

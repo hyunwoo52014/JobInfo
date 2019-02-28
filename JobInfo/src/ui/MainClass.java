@@ -36,6 +36,7 @@ public class MainClass extends JFrame{
 		jp.addTab("검색설정", mc.sp);
 		
 		mc.add(jp);
+
 		
 		mc.setSize(1300,700);
 		mc.setLocationRelativeTo(null);
