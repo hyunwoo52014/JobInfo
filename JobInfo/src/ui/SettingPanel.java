@@ -59,19 +59,25 @@ public class SettingPanel extends JPanel{
 		
 	}
 	
-	public String apiUrlString(int start,int count) {
+	public String apiUrlString(String keyword, int start,int count) {
 		String temp = "http://api.saramin.co.kr/job-search";
-		this.arguments = new String[] {"job_type=","edu_lv=","loc_cd=","ind_cd=","job_category=","start=","count="};
-		//"?jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category=","&start=","&count="
-		for(int i=0; i<this.arguments.length-2; i++) {
-			if(ce[i].getSelectedItem() == "선택없음") {
+		this.arguments = new String[] {"keywords=","job_type=","edu_lv=","loc_cd=","ind_cd=","job_category=","start=","count="};
+		//"?keywords=","&jobtype=","&edu_lv=","&loc_cd=","&ind_cd=","&job_category=","&start=","&count="
+		if(keyword.equals("")) {
+			this.arguments[0] = "";
+		} else {
+			this.arguments[0] += keyword;
+		}
+		
+		for(int i=1; i<this.arguments.length-2; i++) {
+			if(ce[i-1].getSelectedItem().equals("선택없음")) {
 				this.arguments[i] = "";
 			} else {
-				this.arguments[i] += this.dic.getKey(i, ce[i].getSelectedItem());
+				this.arguments[i] += this.dic.getKey(i-1, ce[i-1].getSelectedItem());
 			}
 		}
-		this.arguments[5] += start;
-		this.arguments[6] += count;
+		this.arguments[this.arguments.length-2] += start;
+		this.arguments[this.arguments.length-1] += count;
 		
 		int check = 0;
 		for(int i=0; i<this.arguments.length; i++) {
@@ -88,7 +94,6 @@ public class SettingPanel extends JPanel{
 				temp += "&" + this.arguments[i];
 			}
 		}
-		System.out.println(temp);
 		return temp;
 	}
 }
