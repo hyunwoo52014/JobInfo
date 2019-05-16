@@ -1,6 +1,4 @@
 # JobInfo
-==========
-Jobinfo
 
 > 다운로드 : https://github.com/merapa/JobInfo/releases
 > 사용법 : 자바 jdk 또는 jre 설치, 환경 변수로 등록 한 다음 설치된 폴더에서 명령창으로 java -jar Program.jar 타이핑
