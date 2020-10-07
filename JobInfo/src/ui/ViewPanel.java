@@ -142,7 +142,7 @@ public class ViewPanel extends JPanel implements ActionListener{
 	
 	private void searchJobNListing() {
 		this.model.setRowCount(0);
-		//System.out.println(this.jf[0].getText().equals(""));
+		this.oaur.generate(this.sp.apiUrlString(this.jf[0].getText(),(int)this.jspin[0].getValue(),(int)this.jspin[1].getValue()));
 		this.xi.getjobs(this.oaur.generate(this.sp.apiUrlString(this.jf[0].getText(),(int)this.jspin[0].getValue(),(int)this.jspin[1].getValue())));
 		this.jl[this.jl.length-1].setText("ÀüÃ¼: "+this.xi.getTotal());
 		this.model.setDataVector(this.xi.getTabledata(), header);

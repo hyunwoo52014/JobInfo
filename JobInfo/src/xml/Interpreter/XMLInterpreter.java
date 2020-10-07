@@ -37,18 +37,18 @@ public class XMLInterpreter {
 			
 			for(int i=0; i<jobs.getLength(); i++) {
 				this.tabledata.add(new String[]{
-						String.valueOf(i+1),																	// 순서
-						jobs.item(i).getChildNodes().item(8).getChildNodes().item(0).getTextContent(),		// 기업명
-						jobs.item(i).getChildNodes().item(9).getChildNodes().item(0).getTextContent(),		// 공고제목
-						jobs.item(i).getChildNodes().item(9).getChildNodes().item(1).getTextContent(),		// 지역
-						jobs.item(i).getChildNodes().item(9).getChildNodes().item(2).getTextContent(),		// 근무형태
-						jobs.item(i).getChildNodes().item(9).getChildNodes().item(6).getTextContent(),	// 경력
-						jobs.item(i).getChildNodes().item(9).getChildNodes().item(7).getTextContent(),	// 학력
-						jobs.item(i).getChildNodes().item(11).getTextContent()							// 연봉
+						String.valueOf(i+1),																// 순서
+						jobs.item(i).getChildNodes().item(10).getChildNodes().item(0).getTextContent(),		// 기업명
+						jobs.item(i).getChildNodes().item(11).getChildNodes().item(0).getTextContent(),		// 공고제목
+						jobs.item(i).getChildNodes().item(11).getChildNodes().item(1).getTextContent(),		// 지역
+						jobs.item(i).getChildNodes().item(11).getChildNodes().item(2).getTextContent(),		// 근무형태
+						jobs.item(i).getChildNodes().item(11).getChildNodes().item(7).getTextContent(),	// 경력
+						jobs.item(i).getChildNodes().item(11).getChildNodes().item(8).getTextContent(),	// 학력
+						jobs.item(i).getChildNodes().item(15).getTextContent()							// 연봉
 						});
 				this.hyperlinkdata.add(new String[] {
 						jobs.item(i).getChildNodes().item(1).getTextContent(),							// 공고정보
-						jobs.item(i).getChildNodes().item(8).getChildNodes().item(0).getAttributes().item(0).getTextContent() // 기업정보
+						jobs.item(i).getChildNodes().item(10).getChildNodes().item(0).getAttributes().item(0).getTextContent() // 기업정보
 				});
 			}
 			

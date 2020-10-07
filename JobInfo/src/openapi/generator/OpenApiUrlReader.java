@@ -14,7 +14,7 @@ public class OpenApiUrlReader {
 		try {
 			URL url = new URL(str);
 			huc = (HttpURLConnection) url.openConnection();
-			huc.setRequestProperty("CONTENT-TYPE","text/xml");
+			huc.setRequestProperty("Accept","application/xml");
 			huc.setRequestMethod("GET");
 			xmldata = new StringBuffer();
 			br = new BufferedReader(new InputStreamReader(huc.getInputStream(),"UTF-8"));
