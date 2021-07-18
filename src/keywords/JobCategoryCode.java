@@ -2,6 +2,7 @@ package keywords;
 
 public enum JobCategoryCode {
 	
+	JCCALL(Integer.MIN_VALUE, "전체"),
 	JCC1(101,"기획·전략·경영"),
 	JCC2(102,"총무·법무·사무"),
 	JCC3(103,"경리·출납·결산"),
@@ -139,40 +140,46 @@ public enum JobCategoryCode {
 	JCC135(1309,"의료기타직");
 	
 	private int number;
-	private String name;
+	private String nameTag;
 	
 	JobCategoryCode(int n, String s) {
 		this.number = n;
-		this.name = s;
+		this.nameTag = s;
 	}
 	
-	public int getJobTypeCode() {
-		return this.number;
-	}
-	
-	public String getJobTypeName() {
-		return this.name;
-	}
-	
-	public int returnJobCategoryCodeNumber(String s) {
+	public int returnNumberFromNameTag(String s) {
+		
 		for(JobCategoryCode jcc : JobCategoryCode.values()) {
-			if(jcc.getJobTypeName().equalsIgnoreCase(s)) {
+			
+			if(jcc.nameTag.equalsIgnoreCase(s)) {
 				return jcc.number;
 			}
 		}
-		return 0;
+		
+		return Integer.MIN_VALUE;
 	}
 	
-	public String returnJobCategoryCodeString(int n) {
+	public String returnNameTagFromNumber(int n) {
+		
 		for(JobCategoryCode jcc : JobCategoryCode.values()) {
+			
 			if(jcc.number == n) {
-				return jcc.name;
+				return jcc.nameTag;
 			}
 		}
+		
 		return null;
 	}
 	
 	public int returnLength() {
 		return JobCategoryCode.values().length;
+	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	
+	public String getNameTag() {
+		return this.nameTag;
 	}
 }

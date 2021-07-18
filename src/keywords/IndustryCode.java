@@ -2,6 +2,7 @@ package keywords;
 
 public enum IndustryCode {
 	
+	ind_cdAll(Integer.MIN_VALUE, "전체"),
 	ind_cd0(108,"호텔·여행·항공"),
 	ind_cd1(109,"외식업·식음료"),
 	ind_cd2(111,"시설관리·경비·용역"),
@@ -72,35 +73,31 @@ public enum IndustryCode {
 	
 	
 	private int number;
-	private String name;
+	private String nameTag;
 	
 	IndustryCode(int n, String s) {
 		this.number = n;
-		this.name = s;
+		this.nameTag = s;
 	}
 	
-	public int getIndCode() {
-		return this.number;
-	}
-	
-	public String getIndCodeName() {
-		return this.name;
-	}
-	
-	public int returnIndCodeNumber(String s) {
+	public int returnNumberFromNameTag(String s) {
+		
 		for(IndustryCode ic : IndustryCode.values()) {
-			if(ic.name.equalsIgnoreCase(s)) {
+			
+			if(ic.nameTag.equalsIgnoreCase(s)) {
 				return ic.number;
 			}
 		}
 		
-		return 0;
+		return Integer.MIN_VALUE;
 	}
 	
-	public String returnIndCodeString(int n) {
+	public String returnNameTagFromNumber(int n) {
+		
 		for(IndustryCode ic : IndustryCode.values()) {
+			
 			if(ic.number == n) {
-				return ic.name;
+				return ic.nameTag;
 			}
 		}
 		return null;
@@ -109,4 +106,13 @@ public enum IndustryCode {
 	public int returnLength() {
 		return IndustryCode.values().length;
 	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	
+	public String getNameTag() {
+		return this.nameTag;
+	}
+	
 }

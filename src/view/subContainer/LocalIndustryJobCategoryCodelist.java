@@ -1,6 +1,5 @@
 package view.subContainer;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComboBox;
@@ -18,9 +17,9 @@ public class LocalIndustryJobCategoryCodelist extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -4823515854137605052L;
-	private JComboBox<String> localCodes;
-	private JComboBox<String> industyCode;
-	private JComboBox<String> jobCategoryCode;
+	public JComboBox<String> LocalCodesComboBox;
+	public JComboBox<String> IndustyCodeComboBox;
+	public JComboBox<String> JobCategoryCodeComboBox;
 
 	public LocalIndustryJobCategoryCodelist() {
 		SpringLayout sl = new SpringLayout();
@@ -35,37 +34,27 @@ public class LocalIndustryJobCategoryCodelist extends JPanel {
 		add(industryCodeJP);
 		add(jobCategoryCodeJP);
 		
-		sl.putConstraint(SpringLayout.WEST, localCodeJP, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, localCodeJP, 5, SpringLayout.NORTH, this);
+		sl.putConstraint(SpringLayout.NORTH, industryCodeJP, 0, SpringLayout.SOUTH, localCodeJP);
 		
-		sl.putConstraint(SpringLayout.WEST, industryCodeJP, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, industryCodeJP, 5, SpringLayout.SOUTH, localCodeJP);
-		
-		sl.putConstraint(SpringLayout.WEST, jobCategoryCodeJP, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, jobCategoryCodeJP, 5, SpringLayout.SOUTH, industryCodeJP);
+		sl.putConstraint(SpringLayout.NORTH, jobCategoryCodeJP, 0, SpringLayout.SOUTH, industryCodeJP);
 	}
 	
 	private JPanel localCodeList() {
 		JPanel jp = new JPanel();
 		SpringLayout sl = new SpringLayout();
 		JLabel jl = new JLabel("지역");
-		this.localCodes = new JComboBox<String>();
+		this.LocalCodesComboBox = new JComboBox<String>();
 		
 		for(LocalCode lc : LocalCode.values()) {
-			this.localCodes.addItem(lc.getLocalCodeName());
+			this.LocalCodesComboBox.addItem(lc.getNameTag());
 		}
 		
 		jp.setLayout(sl);
 		jp.setPreferredSize(new Dimension(600, 50));
 		jp.add(jl);
-		jp.add(this.localCodes);
+		jp.add(this.LocalCodesComboBox);
 
-		sl.putConstraint(SpringLayout.WEST, jl, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, jl, 0, SpringLayout.NORTH, this);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.localCodes, 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.WEST, this.localCodes, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, this.localCodes, 0, SpringLayout.SOUTH, jl);
+		sl.putConstraint(SpringLayout.NORTH, this.LocalCodesComboBox, 0, SpringLayout.SOUTH, jl);
 		
 		return jp;
 	}
@@ -74,23 +63,18 @@ public class LocalIndustryJobCategoryCodelist extends JPanel {
 		JPanel jp = new JPanel();
 		SpringLayout sl = new SpringLayout();
 		JLabel jl = new JLabel("업종");
-		this.industyCode = new JComboBox<String>();
+		this.IndustyCodeComboBox = new JComboBox<String>();
 
 		for(IndustryCode Ic : IndustryCode.values()) {
-			this.industyCode.addItem(Ic.getIndCodeName());
+			this.IndustyCodeComboBox.addItem(Ic.getNameTag());
 		}
 		
 		jp.setLayout(sl);
 		jp.setPreferredSize(new Dimension(600, 50));
 		jp.add(jl);
-		jp.add(this.industyCode);
+		jp.add(this.IndustyCodeComboBox);
 		
-		sl.putConstraint(SpringLayout.WEST, jl, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, jl, 0, SpringLayout.NORTH, this);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.industyCode, 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.WEST, this.industyCode, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, this.industyCode, 0, SpringLayout.SOUTH, jl);
+		sl.putConstraint(SpringLayout.NORTH, this.IndustyCodeComboBox, 0, SpringLayout.SOUTH, jl);
 		
 		return jp;
 	}
@@ -99,24 +83,64 @@ public class LocalIndustryJobCategoryCodelist extends JPanel {
 		JPanel jp = new JPanel();
 		SpringLayout sl = new SpringLayout();
 		JLabel jl = new JLabel("직종");
-		this.jobCategoryCode = new JComboBox<String>();
+		this.JobCategoryCodeComboBox = new JComboBox<String>();
 		
 		for(JobCategoryCode jcc : JobCategoryCode.values()) {
-			this.jobCategoryCode.addItem(jcc.getJobTypeName());
+			this.JobCategoryCodeComboBox.addItem(jcc.getNameTag());
 		}
 		
 		jp.setLayout(sl);
 		jp.setPreferredSize(new Dimension(600, 50));
 		jp.add(jl);
-		jp.add(this.jobCategoryCode);
+		jp.add(this.JobCategoryCodeComboBox);
 		
-		sl.putConstraint(SpringLayout.WEST, jl, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, jl, 0, SpringLayout.NORTH, this);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.jobCategoryCode, 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.WEST, this.jobCategoryCode, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, this.jobCategoryCode, 0, SpringLayout.SOUTH, jl);
+		sl.putConstraint(SpringLayout.NORTH, this.JobCategoryCodeComboBox, 0, SpringLayout.SOUTH, jl);
 		
 		return jp;
 	}
+	
+	public String getLocalCodes() {
+		String result = null;
+		LocalCode lc = LocalCode.L1;
+		String nameTag = (String) this.LocalCodesComboBox.getSelectedItem();
+
+		int temp = lc.returnNumberFromNameTag(nameTag);
+		
+		if(temp != Integer.MIN_VALUE) {
+			result = String.valueOf(temp);
+		}
+		
+		return result;
+	}
+	
+	public String getIndustyCodes() {
+		String result = null;
+		IndustryCode ic = IndustryCode.ind_cd0;
+		String nameTag = (String) this.IndustyCodeComboBox.getSelectedItem();
+		
+		int temp = ic.returnNumberFromNameTag(nameTag);
+		
+		if(temp != Integer.MIN_VALUE) {
+			
+			result = String.valueOf(temp);
+		}
+		
+		return result;
+	}
+	
+	public String getJobCategoryCodes() {
+		String result = null;
+		JobCategoryCode jcc = JobCategoryCode.JCC1;
+		String nameTag = (String) this.JobCategoryCodeComboBox.getSelectedItem();
+		
+		int temp = jcc.returnNumberFromNameTag(nameTag);
+		
+		if(temp != Integer.MIN_VALUE) {
+		
+			result = String.valueOf(temp);
+		}
+		
+		return result;
+	}
+	
 }

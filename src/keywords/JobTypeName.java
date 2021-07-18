@@ -1,6 +1,7 @@
 package keywords;
 
 public enum JobTypeName {
+	JobTypeALL(Integer.MIN_VALUE, "전체"),
 	JobTypeName1(1,"정규직"),
 	JobTypeName2(2, "계약직"),
 	JobTypeName3(3, "병역특례"),
@@ -25,23 +26,50 @@ public enum JobTypeName {
 	JobTypeName22(22, "보충역");
 	
 	int number;
-	String str;
+	String nameTag;
 	
 	private JobTypeName(int n, String s) {
 		this.number = n;
-		this.str = s;
+		this.nameTag = s;
 	}
 	
-	public String returnString(int n) {
+	public int returnNumberFromNameTag(String s) {
+		
 		for(JobTypeName jtn : JobTypeName.values()) {
-			if(n == jtn.number) {
-				return jtn.str;
+			if(jtn.nameTag.equalsIgnoreCase(s)) {
+				return jtn.number;
 			}
 		}
-		return null;
+		
+		return Integer.MIN_VALUE;
 	}
 	
+	public String returnNameTagFromNumber(int n) {
+		
+		for(JobTypeName jtn : JobTypeName.values()) {
+			if(n == 0) {
+				return JobTypeALL.nameTag;
+			}
+			
+			if(n == jtn.number) {
+				return jtn.nameTag;
+			}
+		}
+		
+		return null;
+	}
+
 	public int returnLength() {
 		return JobTypeName.values().length;
 	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	
+	public String getNameTag() {
+		return this.nameTag;
+	}
+
+
 }

@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SpringLayout;
 
+import works.model.sub.PublishedStockOption;
+import works.model.sub.RecruitmentList;
+
 public class SaraminRecruitmentOption extends JPanel{
 
 	/**
@@ -19,8 +22,9 @@ public class SaraminRecruitmentOption extends JPanel{
 	private JLabel goPublicOption = new JLabel("상장여부");
 	private JLabel headHuntingOption = new JLabel("제외/포함 설정");
 	private ButtonGroup group = new ButtonGroup();
-	private JRadioButton[] radiobuttonList = new JRadioButton[2];
-	private JCheckBox[] checkboxList = new JCheckBox[4];
+	public JRadioButton[] RecruitMentList = new JRadioButton[2];
+	public JCheckBox[] GoPublicCheckboxList = new JCheckBox[3];
+	public JCheckBox HheadHuntingCheckBox;
 	
 	public SaraminRecruitmentOption() {
 		SpringLayout sl = new SpringLayout();
@@ -35,13 +39,8 @@ public class SaraminRecruitmentOption extends JPanel{
 		add(option2);
 		add(option3);
 		
-		sl.putConstraint(SpringLayout.WEST, option1, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, option1, 5, SpringLayout.NORTH, this);
-		
-		sl.putConstraint(SpringLayout.WEST, option2, 5, SpringLayout.WEST, this);
 		sl.putConstraint(SpringLayout.NORTH, option2, 5, SpringLayout.SOUTH, option1);
 		
-		sl.putConstraint(SpringLayout.WEST, option3, 5, SpringLayout.WEST, this);
 		sl.putConstraint(SpringLayout.NORTH, option3, 5, SpringLayout.SOUTH, option2);
 	}
 	
@@ -51,25 +50,20 @@ public class SaraminRecruitmentOption extends JPanel{
 		jp.setPreferredSize(new Dimension(500, 50));
 		jp.setLayout(sl);
 		
-		this.radiobuttonList[0] = new JRadioButton("모든 채용 공고");
-		this.radiobuttonList[1] = new JRadioButton("사람인 공채속보만 포함");
+		this.RecruitMentList[0] = new JRadioButton("모든 채용 공고");
+		this.RecruitMentList[1] = new JRadioButton("사람인 공채속보만 포함");
 		
-		this.group.add(this.radiobuttonList[0]);
-		this.group.add(this.radiobuttonList[1]);
+		this.group.add(this.RecruitMentList[0]);
+		this.group.add(this.RecruitMentList[1]);
 		
 		jp.add(this.recruitmentOption);
-		jp.add(this.radiobuttonList[0]);
-		jp.add(this.radiobuttonList[1]);
+		jp.add(this.RecruitMentList[0]);
+		jp.add(this.RecruitMentList[1]);
 		
-		sl.putConstraint(SpringLayout.WEST, this.recruitmentOption, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, this.recruitmentOption, 0, SpringLayout.NORTH, this);
+		sl.putConstraint(SpringLayout.NORTH, this.RecruitMentList[0], 0, SpringLayout.SOUTH, this.recruitmentOption);
 		
-		sl.putConstraint(SpringLayout.NORTH, this.radiobuttonList[0], 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.NORTH, this.radiobuttonList[0], 0, SpringLayout.SOUTH, this.recruitmentOption);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.radiobuttonList[1], 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.NORTH, this.radiobuttonList[1], 0, SpringLayout.SOUTH, this.recruitmentOption);
-		sl.putConstraint(SpringLayout.WEST, this.radiobuttonList[1], 0, SpringLayout.EAST, this.radiobuttonList[0]);
+		sl.putConstraint(SpringLayout.NORTH, this.RecruitMentList[1], 0, SpringLayout.SOUTH, this.recruitmentOption);
+		sl.putConstraint(SpringLayout.WEST, this.RecruitMentList[1], 0, SpringLayout.EAST, this.RecruitMentList[0]);
 		
 		return jp;
 	}
@@ -81,26 +75,22 @@ public class SaraminRecruitmentOption extends JPanel{
 		jp.setPreferredSize(new Dimension(500, 50));
 		jp.setLayout(sl);
 
-		this.checkboxList[0] = new JCheckBox("유가증권",false);
-		this.checkboxList[1] = new JCheckBox("코스닥", false);
-		this.checkboxList[2] = new JCheckBox("나스닥", false);
+		this.GoPublicCheckboxList[0] = new JCheckBox("유가증권",false);
+		this.GoPublicCheckboxList[1] = new JCheckBox("코스닥", false);
+		this.GoPublicCheckboxList[2] = new JCheckBox("나스닥", false);
 		
 		jp.add(this.goPublicOption);
-		jp.add(this.checkboxList[0]);
-		jp.add(this.checkboxList[1]);
-		jp.add(this.checkboxList[2]);
+		jp.add(this.GoPublicCheckboxList[0]);
+		jp.add(this.GoPublicCheckboxList[1]);
+		jp.add(this.GoPublicCheckboxList[2]);
 		
-		sl.putConstraint(SpringLayout.NORTH, this.goPublicOption, 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.WEST, this.goPublicOption, 5, SpringLayout.WEST, this);
+		sl.putConstraint(SpringLayout.NORTH, this.GoPublicCheckboxList[0], 0, SpringLayout.SOUTH, this.goPublicOption);
 		
-		sl.putConstraint(SpringLayout.NORTH, this.checkboxList[0], 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.NORTH, this.checkboxList[0], 0, SpringLayout.SOUTH, this.goPublicOption);
+		sl.putConstraint(SpringLayout.NORTH, this.GoPublicCheckboxList[1], 0, SpringLayout.SOUTH, this.goPublicOption);
+		sl.putConstraint(SpringLayout.WEST, this.GoPublicCheckboxList[1], 0, SpringLayout.EAST, this.GoPublicCheckboxList[0]);
 		
-		sl.putConstraint(SpringLayout.NORTH, this.checkboxList[1], 0, SpringLayout.SOUTH, this.goPublicOption);
-		sl.putConstraint(SpringLayout.WEST, this.checkboxList[1], 0, SpringLayout.EAST, this.checkboxList[0]);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.checkboxList[2], 0, SpringLayout.SOUTH, this.goPublicOption);
-		sl.putConstraint(SpringLayout.WEST, this.checkboxList[2], 0, SpringLayout.EAST, this.checkboxList[1]);
+		sl.putConstraint(SpringLayout.NORTH, this.GoPublicCheckboxList[2], 0, SpringLayout.SOUTH, this.goPublicOption);
+		sl.putConstraint(SpringLayout.WEST, this.GoPublicCheckboxList[2], 0, SpringLayout.EAST, this.GoPublicCheckboxList[1]);
 		
 		
 		return jp;
@@ -113,19 +103,59 @@ public class SaraminRecruitmentOption extends JPanel{
 		jp.setPreferredSize(new Dimension(500, 50));
 		jp.setLayout(sl);
 		
-		this.checkboxList[3] = new JCheckBox("헤드헌팅/파견업체 공고제외",false);
+		this.HheadHuntingCheckBox = new JCheckBox("헤드헌팅/파견업체 공고제외",false);
 
 		jp.add(this.headHuntingOption);
-		jp.add(this.checkboxList[3]);
-		
-		sl.putConstraint(SpringLayout.NORTH, this.headHuntingOption, 0, SpringLayout.NORTH, this);
-		sl.putConstraint(SpringLayout.WEST, this.headHuntingOption, 5, SpringLayout.WEST, this);
-		
-		sl.putConstraint(SpringLayout.WEST, this.headHuntingOption, 5, SpringLayout.WEST, this);
-		sl.putConstraint(SpringLayout.NORTH, this.checkboxList[3], 0, SpringLayout.SOUTH, this.headHuntingOption);
+		jp.add(this.HheadHuntingCheckBox);
+
+		sl.putConstraint(SpringLayout.NORTH, this.HheadHuntingCheckBox, 0, SpringLayout.SOUTH, this.headHuntingOption);
 		
 		return jp;
 	}
 	
+	public String getRecruitmentOptionValue() {
+		String result = null;
+		
+		if(this.RecruitMentList[0].isSelected()) {
+			result = RecruitmentList.All.getNumberToString();
+		}
+		
+		if(this.RecruitMentList[1].isSelected()) {
+			result = RecruitmentList.InSaramin.getNumberToString();
+		}
+		
+		return result;
+	}
+	
+	public String getPublicOptionValue() {
+		String result = null;
+		boolean chain = false;
+		PublishedStockOption pso = PublishedStockOption.KOSPI;
+		
+		for(int i = 0; i < this.GoPublicCheckboxList.length; i++) {
+			if(this.GoPublicCheckboxList[i].isSelected()) {
+				if(chain) {
+					result += "+"+pso.returnNameTagFromNumber(i);
+				} else {
+					result = "";
+					result += pso.returnNameTagFromNumber(i);
+					chain = true;
+				}				
+			}
+		}
+		
+		return result;
+	}
+	
+	public String getHeadHuntingValue() {
+		String result = null;
+		
+		if(this.HheadHuntingCheckBox.isSelected()) {
+			result = "";
+			result += "directhire";
+		}
+		
+		return result;
+	}
 	
 }
