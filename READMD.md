@@ -1,8 +1,8 @@
 # JobInfo
 
-> ´Ù¿î·Îµå : https://github.com/merapa/JobInfo/releases
+> ë‹¤ìš´ë¡œë“œ : https://github.com/merapa/JobInfo/releases
 
-> »ç¿ë¹ý : ÀÚ¹Ù jdk ¶Ç´Â jre ¼³Ä¡, È¯°æ º¯¼ö·Î µî·Ï ÇÑ ´ÙÀ½ ¼³Ä¡µÈ Æú´õ¿¡¼­ ¸í·ÉÃ¢À¸·Î java -jar Program.jar Å¸ÀÌÇÎ ¶Ç´Â ´õºíÅ¬¸¯À¸·Î ½ÇÇà
+> ì‚¬ìš©ë²• : ìžë°” jdk ë˜ëŠ” jre ì„¤ì¹˜, í™˜ê²½ ë³€ìˆ˜ë¡œ ë“±ë¡ í•œ ë‹¤ìŒ ì„¤ì¹˜ëœ í´ë”ì—ì„œ ëª…ë ¹ì°½ìœ¼ë¡œ java -jar Program.jar íƒ€ì´í•‘ ë˜ëŠ” ë”ë¸”í´ë¦­ìœ¼ë¡œ ì‹¤í–‰
 
 
-> À¯ÀÇÁ¡ : Windows 10¿¡¼­¸¸ µ¿ÀÛÀ» È®ÀÎÇß½À´Ï´Ù. ´Ù¸¥ OSÈ¯°æ ¹× GUIÈ¯°æ¿¡¼­ µ¿ÀÛÇÏÁö ¾ÊÀ» ¼ö ÀÖ½À´Ï´Ù.
+> ìœ ì˜ì  : Windows 10ì—ì„œë§Œ ë™ìž‘ì„ í™•ì¸í–ˆìŠµë‹ˆë‹¤. ë‹¤ë¥¸ OSí™˜ê²½ ë° GUIí™˜ê²½ì—ì„œ ë™ìž‘í•˜ì§€ ì•Šì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
