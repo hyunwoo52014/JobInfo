@@ -132,7 +132,6 @@ public class GetDataFromAPI implements Callable<ResultAllData> {
 	public InputStream getStreamData() throws IOException {
 		
 		URL url = new URL("https://oapi.saramin.co.kr/job-search?access-key="+getApiKey()+getParameter());
-		System.out.println(url);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setConnectTimeout(1000);
 		con.setReadTimeout(1000);

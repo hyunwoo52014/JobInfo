@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import javax.swing.JButton;
@@ -59,7 +58,7 @@ public class ResultWindow extends JFrame {
 	public ResultWindow() {
 		SpringLayout sl = new SpringLayout();
 		setLayout(sl);
-		setSize(1000, 560);
+		setSize(1050, 570);
 		setResizable(false);
 		this.addWindowListener(new WindowAdapter() {
 			
@@ -231,17 +230,20 @@ public class ResultWindow extends JFrame {
 		});
 		
 		sl.getConstraints(buttons[3]).setWidth(Spring.constant(60));;
-		sl.getConstraints(buttons[3]).setX(Spring.constant(jp.getWidth() - sl.getConstraints(buttons[3]).getWidth().getValue()));
+		sl.getConstraints(buttons[3]).setX(Spring.constant(jp.getWidth() - sl.getConstraints(buttons[3]).getWidth().getValue() - 10));
 
 		sl.putConstraint(SpringLayout.EAST, buttons[2], -15, SpringLayout.WEST, buttons[3]);
 		
 		sl.putConstraint(SpringLayout.EAST, buttons[1], -15, SpringLayout.WEST, buttons[2]);
 		
 		sl.putConstraint(SpringLayout.EAST, this.totalPage, -15, SpringLayout.WEST, buttons[1]);
+		sl.putConstraint(SpringLayout.NORTH, this.totalPage, 5, SpringLayout.NORTH, this);
 		
 		sl.putConstraint(SpringLayout.EAST, slash, -15, SpringLayout.WEST, this.totalPage);
-		
+		sl.putConstraint(SpringLayout.NORTH, slash, 5, SpringLayout.NORTH, this);
+
 		sl.putConstraint(SpringLayout.EAST, this.currentPage, -15, SpringLayout.WEST, slash);
+		sl.putConstraint(SpringLayout.NORTH, this.currentPage, 5, SpringLayout.NORTH, this);
 		
 		sl.putConstraint(SpringLayout.NORTH, poweredBy, 5, SpringLayout.NORTH, this);
 		
