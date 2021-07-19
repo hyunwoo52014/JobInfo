@@ -24,7 +24,7 @@ public class OptionalItem extends JPanel {
 	public OptionalItem() {
 		SpringLayout sl = new SpringLayout();
 		setLayout(sl);
-		setPreferredSize(new Dimension(700, 120));
+		setPreferredSize(new Dimension(700, 60));
 		
 		JPanel optionList = addOptionlist();
 		

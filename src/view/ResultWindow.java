@@ -148,6 +148,7 @@ public class ResultWindow extends JFrame {
 			jp.add(buttons[i]);
 		}
 		
+		jp.add(poweredBy);
 		jp.add(this.currentPage);
 		jp.add(slash);
 		jp.add(this.totalPage);
@@ -163,9 +164,6 @@ public class ResultWindow extends JFrame {
 				}
 			}
 		});
-		
-		buttons[0].setBorderPainted(false);
-		buttons[0].setContentAreaFilled(false);
 		
 		buttons[1].addMouseListener(new MouseAdapter() {
 
@@ -244,6 +242,10 @@ public class ResultWindow extends JFrame {
 		sl.putConstraint(SpringLayout.EAST, slash, -15, SpringLayout.WEST, this.totalPage);
 		
 		sl.putConstraint(SpringLayout.EAST, this.currentPage, -15, SpringLayout.WEST, slash);
+		
+		sl.putConstraint(SpringLayout.NORTH, poweredBy, 5, SpringLayout.NORTH, this);
+		
+		sl.putConstraint(SpringLayout.WEST, buttons[0], 0, SpringLayout.EAST, poweredBy);
 		
 		return jp;
 	}
