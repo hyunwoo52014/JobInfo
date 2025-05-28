@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.dao.UIDataLabelMapper">
+	
+	<resultMap type="data.dto.CodeDTO" id="BaseCodeDTO">
+		<result column="code" property="code"/>
+		<result column="label" property="label"/>
+	</resultMap>
+	
+	<sql id="BaseColumn">
+		code, label
+	</sql>
+	
+	<resultMap type="data.dto.WorkTypeDTO" id="workTypeMap" extends="BaseCodeDTO" />
+	<resultMap type="data.dto.EducationDTO" id="educationMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.SalaryDTO" id="salaryMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.LocationCodeTotalDTO" id="locationCodeTotalMap">
+		<result column="code_first" property="first_code"/>
+		<result column="code_seconds" property="seconds_code"/>
+	</resultMap>
+	<resultMap type="data.dto.LocationCodeFirstDTO" id="locationCodeFirstMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.LocationCodeSecondsDTO" id="locationCodeSecondsMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.IndustryRootCodeDTO" id="industryRootCodeMap"  extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.IndustryCodeDTO" id="industryCodeMap" extends="BaseCodeDTO">
+		<result column="root_code" property="root_code"/>
+	</resultMap>
+	<resultMap type="data.dto.BusinessCodeDTO" id="businessCodeMap" extends="BaseCodeDTO">
+		<result column="industry_code" property="industry_code"/>
+	</resultMap>
+	<resultMap type="data.dto.JobNOccupationDTO" id="jobNOccupationMap">
+		<result column="root_code" property="root_code"/>
+		<result column="occupation_label" property="occupation_label"/>
+		<result column="code" property="code"/>
+		<result column="job_label" property="job_label"/>
+	</resultMap>
+	
+	<select id="getWorkTypeAll" resultMap="workTypeMap">
+		SELECT <include refid="BaseColumn"/> FROM WorkType
+	</select>
+	
+	<select id="getEducationAll" resultMap="educationMap">
+		SELECT <include refid="BaseColumn"/> FROM Education
+	</select>
+	
+	<select id="getSalaryAll" resultMap="salaryMap">
+		SELECT <include refid="BaseColumn"/> FROM Salary
+	</select>
+	
+	<select id="getLocationTotalAll" resultMap="locationCodeTotalMap">
+		SELECT <include refid="BaseColumn"/>, code_seconds, code_first FROM LocationCodeTotal
+	</select>
+		
+	<select id="getLocationSecondsAll" resultMap="locationCodeSecondsMap">
+		SELECT <include refid="BaseColumn"/> FROM LocationCodeSeconds
+	</select>
+	
+	<select id="getLocationFirstAll" resultMap="locationCodeFirstMap">
+		SELECT <include refid="BaseColumn"/> FROM LocationCodeFirst
+	</select>
+
+	<select id="getIndustryRootCodeAll" resultMap="industryRootCodeMap">
+		SELECT <include refid="BaseColumn"/> FROM IndustryRootCode
+	</select>
+	
+	<select id="getIndustryCodeAll" resultMap="industryCodeMap">
+		SELECT <include refid="BaseColumn"/> , root_code FROM IndustryCode
+	</select>
+	
+	<select id="getBusinessCodeAll" resultMap="businessCodeMap">
+		SELECT <include refid="BaseColumn"/> , industry_code FROM BusinessCode
+	</select>
+
+	<select id="getJobNOccupationAll" resultMap="jobNOccupationMap">
+		SELECT root_code, occupation_label, code, job_label FROM JobNOccupation
+	</select>
+</mapper>
