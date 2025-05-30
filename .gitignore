@@ -19,7 +19,7 @@ tmp/**/*
 *.swp
 *~.nib
 .classpath
-.factorypath
+/.factorypath
 /.settings
 .loadpath
 /src/main/resources/rebel.xml
@@ -33,3 +33,4 @@ tmp/**/*
 /logs
 /bin
 /target
+/JobInfo/src/main/resources/sql-init-folder/datas/group_api_data.sq

@@ -1,5 +1,6 @@
 -- 근무형태/학력/연봉 코드표 데이터
-MERGE INTO WorkType (code, label) VALUES
+MERGE INTO JoBType (code, label) VALUES
+(0, '전체')
 (1,	'정규직'),
 (2,	'계약직'),
 (3,	'병역특례'),

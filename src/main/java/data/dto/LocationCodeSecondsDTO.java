@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LocationCodeSecondsDTO extends CodeDTO {
+public class LocationCodeSecondsDTO extends LocationCodeDTO {
 	
 	@Override
 	public String toString() {

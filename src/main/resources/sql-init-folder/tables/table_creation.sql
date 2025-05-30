@@ -1,6 +1,6 @@
 -- 테이블 선언
 -- 근무형태/학력/연봉 코드
-CREATE TABLE IF NOT EXISTS WorkType (
+CREATE TABLE IF NOT EXISTS JoBType (
 	code INT PRIMARY KEY,
 	label VARCHAR(50)
 );
@@ -69,3 +69,10 @@ CREATE TABLE IF NOT EXISTS JobNOccupation (
 	job_label VARCHAR(50)
 );
 
+-- API관련 데이터
+CREATE TABLE IF NOT EXISTS ApiTable (
+	orderValue INT PRIMARY KEY,
+	apiKey VARCHAR(100),
+	headerValue VARCHAR(50),
+
+);

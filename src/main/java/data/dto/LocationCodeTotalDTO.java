@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LocationCodeTotalDTO extends CodeDTO {
+public class LocationCodeTotalDTO extends LocationCodeDTO {
 
 	int first_code;
 	int seconds_code;
