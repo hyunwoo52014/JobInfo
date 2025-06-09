@@ -1,35 +1,15 @@
-# Package File#
-*.jar
-*.war
-*.ear
-*/db
+#제외폴더
 
-#########
-#Eclipse#
-#########
+/target/
+/.settings/
+/bin/
+/data/
+/logs/
+/src/main/resources/sql-init-folder/datas/*.sql
 
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
+#제외파일
+application-*.properties
+logback-spring.xml
 .classpath
-/.factorypath
-/.settings
-.loadpath
-
-########
-커스텀
-########
-.apt_generated
-.apt_generated_tests
-/data
-/logs
-/bin
-/target
-resources/sql-init-folder/datas/group_api_data.sql
+.factorypath
+.project
