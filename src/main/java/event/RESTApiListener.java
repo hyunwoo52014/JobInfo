@@ -50,7 +50,7 @@ public class RESTApiListener {
         		log.error(e.toString());
         	}
         }
-        log.info("url : " + event.apiUrl());
+        log.debug("url : " + event.apiUrl());
         jobSearch.setRequest((ApiDTO)event.getDto());
         this.panel.setXmlString(jobSearch);
     }

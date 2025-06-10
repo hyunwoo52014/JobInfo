@@ -80,11 +80,13 @@
     			<configuration>
     				<jar>target/JobInfo-${project.version}.jar</jar>
     				<outfile>target/JobInfo.exe</outfile>
-    				<jrePath></jrePath>
+    				<jre>
+    					<minVersion>14</minVersion>
+    				</jre>
     				<versionInfo>
     					<companyName>hyunwoo</companyName>
-    					<fileVersion>1.0.0</fileVersion>
-    					<productVersion>1.0.0</productVersion>
+    					<fileVersion>1.0.0.0</fileVersion>
+    					<productVersion>1.0.0.0</productVersion>
     				</versionInfo>
     			</configuration>
 			</plugin>

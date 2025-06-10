@@ -81,6 +81,7 @@ public class ResultTableComponents extends JPanel
         		JOptionPane.showMessageDialog(null, "맨 첫번째 장입니다.");
         		return;
         	}
+        	page_number.setText(String.valueOf(Integer.parseInt(page_number.getText())-1));
         	request.setStart(--start);
         	apiService.saraminApiService(new SaraminRestApiEvent(this, request));
         });
@@ -89,6 +90,8 @@ public class ResultTableComponents extends JPanel
         next_button.addActionListener((e)->{
         	RequestSaraminDTO request = (RequestSaraminDTO) xmlData.getRequest();
         	int start = request.getStart();
+        	
+        	page_number.setText(String.valueOf(Integer.parseInt(page_number.getText())+1));
         	request.setStart(++start);
         	apiService.saraminApiService(new SaraminRestApiEvent(this, request));
         });
@@ -195,17 +198,18 @@ public class ResultTableComponents extends JPanel
         }
         final List<SaraminResponseXml.Job> jobList = ((SaraminResponseXml)this.xmlData).getJobs().getJobList();
         for (final SaraminResponseXml.Job job : jobList) {
-            final Object[] row = { 
+            Object[] row = { 
             		(job.getActive() == ActiveTag.Done.getNumber()) ? ActiveTag.Done.getTag() : ActiveTag.Continue.getTag(), 
-            				job.getCloseType().getValue(), 
-            				this.convertTimestamp(job.getExpirationTimestamp()),
-            				job.getPosition().getTitle().getValue(),
-            				job.getCompany().getName().getValue(),
-            				job.getPosition().getRequiredEducationLevel().getValue(),
-            				job.getPosition().getExperienceLevel().getValue(),
-            				job.getPosition().getJobtype().getValue(),
-            				job.getUrl(),
-            				job.getCompany().getName().getHref() };
+            		job.getCloseType().getValue(), 
+            		this.convertTimestamp(job.getExpirationTimestamp()),
+            		job.getPosition().getTitle().getValue(),
+            		job.getCompany().getName().getValue(),
+            		job.getPosition().getRequiredEducationLevel().getValue(),
+            		job.getPosition().getExperienceLevel().getValue(),
+            		job.getPosition().getJobtype().getValue(),
+            		job.getUrl(),
+            		job.getCompany().getName().getHref()
+            		};
             model.addRow(row);
         }
     }
