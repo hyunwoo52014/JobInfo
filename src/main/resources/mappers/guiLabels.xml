@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="data.dao.UIDataLabelMapper">
 	
-	<resultMap type="data.dto.CodeDTO" id="BaseCodeDTO">
+	<resultMap type="data.dto.ui.CodeDTO" id="BaseCodeDTO">
 		<result column="code" property="code"/>
 		<result column="label" property="label"/>
 	</resultMap>
@@ -12,31 +12,33 @@
 		code, label
 	</sql>
 	
-	<resultMap type="data.dto.WorkTypeDTO" id="workTypeMap" extends="BaseCodeDTO" />
-	<resultMap type="data.dto.EducationDTO" id="educationMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.SalaryDTO" id="salaryMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.LocationCodeTotalDTO" id="locationCodeTotalMap">
+	<resultMap type="data.dto.ui.WorkTypeDTO" id="workTypeMap" extends="BaseCodeDTO" />
+	<resultMap type="data.dto.ui.EducationDTO" id="educationMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.SalaryDTO" id="salaryMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.LocationCodeTotalDTO" id="locationCodeTotalMap">
 		<result column="code_first" property="first_code"/>
 		<result column="code_seconds" property="seconds_code"/>
 	</resultMap>
-	<resultMap type="data.dto.LocationCodeFirstDTO" id="locationCodeFirstMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.LocationCodeSecondsDTO" id="locationCodeSecondsMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.IndustryRootCodeDTO" id="industryRootCodeMap"  extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.IndustryCodeDTO" id="industryCodeMap" extends="BaseCodeDTO">
+	<resultMap type="data.dto.ui.LocationCodeFirstDTO" id="locationCodeFirstMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.LocationCodeSecondsDTO" id="locationCodeSecondsMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.IndustryRootCodeDTO" id="industryRootCodeMap"  extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.IndustryCodeDTO" id="industryCodeMap" extends="BaseCodeDTO">
 		<result column="root_code" property="root_code"/>
 	</resultMap>
-	<resultMap type="data.dto.BusinessCodeDTO" id="businessCodeMap" extends="BaseCodeDTO">
+	<resultMap type="data.dto.ui.BusinessCodeDTO" id="businessCodeMap" extends="BaseCodeDTO">
 		<result column="industry_code" property="industry_code"/>
 	</resultMap>
-	<resultMap type="data.dto.JobNOccupationDTO" id="jobNOccupationMap">
+	<resultMap type="data.dto.ui.JobCodeDTO" id="jobCodeMap">
 		<result column="root_code" property="root_code"/>
-		<result column="occupation_label" property="occupation_label"/>
-		<result column="code" property="code"/>
-		<result column="job_label" property="job_label"/>
+	</resultMap>
+	<resultMap type="data.dto.ui.OccupationCodeDTO" id="occupationCodeMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.SortLabelDTO" id="sortLabelMap">
+		<result column="abbreviation" property="abbreviation"/>
+		<result column="label" property="label"/>
 	</resultMap>
 	
 	<select id="getWorkTypeAll" resultMap="workTypeMap">
-		SELECT <include refid="BaseColumn"/> FROM WorkType
+		SELECT <include refid="BaseColumn"/> FROM JobType
 	</select>
 	
 	<select id="getEducationAll" resultMap="educationMap">
@@ -71,7 +73,15 @@
 		SELECT <include refid="BaseColumn"/> , industry_code FROM BusinessCode
 	</select>
 
-	<select id="getJobNOccupationAll" resultMap="jobNOccupationMap">
-		SELECT root_code, occupation_label, code, job_label FROM JobNOccupation
+	<select id="getJobCodeAll" resultMap="jobCodeMap">
+		SELECT <include refid="BaseColumn"/>, root_code FROM JobCode
+	</select>
+	
+	<select id="getOccupationCodeAll" resultMap="occupationCodeMap">
+		SELECT <include refid="BaseColumn"/> FROM OccupationCode
+	</select>
+
+	<select id="getSortLabelAll" resultMap="sortLabelMap">
+		SELECT abbreviation, label FROM SortLabel
 	</select>
 </mapper>

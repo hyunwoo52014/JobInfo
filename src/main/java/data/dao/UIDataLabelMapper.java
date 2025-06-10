@@ -1,8 +1,9 @@
 package data.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import data.dto.ui.*;
 import java.util.List;
-import data.dto.*;
+
 
 @Mapper
 public interface UIDataLabelMapper {
@@ -16,6 +17,7 @@ public interface UIDataLabelMapper {
 	List<IndustryRootCodeDTO> getIndustryRootCodeAll();
 	List<IndustryCodeDTO> getIndustryCodeAll();
 	List<BusinessCodeDTO> getBusinessCodeAll();
-	List<JobNOccupationDTO> getJobNOccupationAll();
-	
+	List<JobCodeDTO> getJobCodeAll();
+	List<OccupationCodeDTO> getOccupationCodeAll();
+	List<SortLabelDTO> getSortLabelAll();
 }

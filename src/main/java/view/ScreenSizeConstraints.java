@@ -10,9 +10,9 @@ public class ScreenSizeConstraints {
 	int minWidth,minHeight,preferWidth,preferHeight,maxWidth,maxHeight;
 	
 	public ScreenSizeConstraints() {
-		this.minWidth = 600;
+		this.minWidth = 1000;
 		this.minHeight = 500;
-		this.preferWidth = 600;
+		this.preferWidth = 1000;
 		this.preferHeight = 500;
 		this.maxWidth = Integer.MAX_VALUE;
 		this.maxHeight = Integer.MAX_VALUE;
@@ -56,7 +56,19 @@ public class ScreenSizeConstraints {
 	
 	public void setSize(java.awt.Component com) {
 		com.setMinimumSize(new Dimension(minWidth, minHeight));
-		com.setSize(new Dimension(preferWidth, preferHeight));
+		com.setPreferredSize(new Dimension(preferWidth, preferHeight));
 		com.setMaximumSize(new Dimension(maxWidth, maxHeight));
+	}
+	
+	public Dimension getMinSize() {
+		return new Dimension(minWidth, minHeight);
+	}
+	
+	public Dimension getMaxSize() {
+		return new Dimension(maxWidth, maxHeight);
+	}
+	
+	public Dimension getPreferSize() {
+		return new Dimension(preferWidth, preferHeight);
 	}
 }

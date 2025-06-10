@@ -77,4 +77,9 @@ public class GridBagLayoutBuilder {
 	public void configure(Container target) {
 		this.source.add(target, this.constraints);
 	}
+	
+	public void relpaceSource(Container replaceSource) {
+		this.source = replaceSource;
+		this.source.setLayout(layout);
+	}
 }

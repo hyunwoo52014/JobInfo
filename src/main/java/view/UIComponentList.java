@@ -1,56 +1,43 @@
 package view;
 
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.util.Iterator;
-import java.util.List;
+import java.awt.CardLayout;
+import java.awt.Container;
 
 import javax.swing.WindowConstants;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import data.dao.UIDataLabelRepository;
-import data.dto.EducationDTO;
-import data.dto.LocationCodeFirstDTO;
-import data.dto.LocationCodeSecondsDTO;
-import data.dto.LocationCodeTotalDTO;
-import data.dto.SalaryDTO;
-import data.dto.WorkTypeDTO;
-import lombok.extern.log4j.Log4j2;
 
 @Configuration
 public class UIComponentList {
 
-	@Bean(name = "ResultWindow")
-	JFrame resultWindow(ScreenSizeConstraints constraints, JPanel panel) {
+	@Bean(name = "FrameWindow")
+	JFrame FrameWindow(
+			ScreenSizeConstraints constraints,
+			@Qualifier("MenuPanel") JPanel MenuBar,
+			@Qualifier("ResultTablePanel") JPanel ResultTable,
+			CardLayoutNavigator navigator
+		) {
 		JFrame frame = new JFrame();
-		frame.add(panel, BorderLayout.NORTH);
+		Container contentPane = frame.getContentPane();
+		CardLayout layout = new CardLayout();
+		contentPane.setLayout(layout);
+		navigator.register(contentPane, layout);
+		contentPane.add(MenuBar, "MenuPanel");
+		contentPane.add(ResultTable, "ResultTablePanel");
+		navigator.show("MenuPanel");
+		
+		
 		frame.setTitle("JobInfo");
 		constraints.setSize(frame);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
  		return frame;
 	}
-	
-	@Bean(name = "SettingWindow")
-	JFrame settingWindow(ScreenSizeConstraints constraints) {
-		JFrame frame = new JFrame();
-		constraints.setSize(frame);
-		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
- 		return frame;
-	}
-	
-	@Bean()
-	JPanel selectPanel(UIDataLabelRepository labelRepo) {
-		JPanel panel = new JPanel();
 
-		
-		return panel;
-	}
+	
 }
