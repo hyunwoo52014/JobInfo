@@ -1,15 +1,11 @@
 #제외폴더
-
 /target/
 /.settings/
 /bin/
 /data/
 /logs/
-#/src/main/resources/sql-init-folder/datas/*.sql
 
 #제외파일
-#application-*.properties
-#logback-spring.xml
 .classpath
 .factorypath
 .project
