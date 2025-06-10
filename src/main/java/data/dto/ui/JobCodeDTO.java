@@ -17,6 +17,6 @@ public class JobCodeDTO extends CodeDTO {
     int root_code;
     
     public String toString() {
-		return this.label;
+		return label;
 	}
 }

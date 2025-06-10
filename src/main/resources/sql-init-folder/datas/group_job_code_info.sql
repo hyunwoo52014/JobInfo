@@ -1,5 +1,5 @@
 -- 직무/직업 코드표
-MERGE INTO OccupationCode VALUES
+MERGE INTO OccupationCode(code, label) VALUES
 (0,'전체'),
 (2,'IT개발·데이터'),
 (3,'회계·세무·재무'),

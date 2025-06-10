@@ -322,8 +322,10 @@ public class MenuBarComponents extends JPanel {
 		
 		int_cd_box.setEnabled(false);
 		job_mid_cd_box.setEnabled(false);
+		job_cd_checker.setEnabled(false);
 		job_cd_box.setEnabled(false);
 		
+		//분야
 		ind_cd_checker.addItemListener((e) -> {
 			int_cd_box.removeAllItems();
 			if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -338,6 +340,7 @@ public class MenuBarComponents extends JPanel {
 
 		});
 		
+		//분류
 		job_mid_cd_checker.addItemListener((e) -> {
 			job_mid_cd_box.removeAllItems();
 			if(e.getStateChange() == ItemEvent.SELECTED) {
@@ -348,10 +351,20 @@ public class MenuBarComponents extends JPanel {
 				job_mid_cd_box.setEnabled(true);
 			} else {
 				job_mid_cd_box.setEnabled(false);
-				job_cd_checker.setSelected(false);
 			}
 		});
+		
+		//분류 가 선택되었을 시
+		job_mid_cd_box.addItemListener((e)->{
+			if(e.getStateChange() == ItemEvent.SELECTED &&
+				((OccupationCodeDTO)job_mid_cd_box.getSelectedItem()).getCode() != 0) {
+				job_cd_checker.setEnabled(true);
+				job_cd_box.setEnabled(true);
+			}
+		});
+		
 
+		//사업
 		job_cd_checker.addItemListener((e) -> {
 
 			job_cd_box.removeAllItems();
@@ -359,6 +372,9 @@ public class MenuBarComponents extends JPanel {
 				List<JobCodeDTO> dtoList = this.uiRepository.getJobCodeAll();
 				OccupationCodeDTO root_dto = (OccupationCodeDTO) job_mid_cd_box.getSelectedItem();
 				int root_code = root_dto.getCode();
+				if(root_code == 0) {
+					return;
+				}
 				for(JobCodeDTO dto : dtoList) {
 					if(dto.getRoot_code() == root_code) {
 						job_cd_box.addItem(dto);
