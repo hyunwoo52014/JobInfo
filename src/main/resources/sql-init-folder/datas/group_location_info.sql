@@ -1,6 +1,7 @@
 -- 근무지/지역 코드표
 -- 첫번째 지역 코드
 MERGE INTO LocationCodeFirst (code, label) VALUES
+(0,'전체'),
 (101000,'서울'),
 (102000,'경기'),
 (103000,'광주'),
@@ -30,6 +31,7 @@ MERGE INTO LocationCodeFirst (code, label) VALUES
 
 -- 두번째 지역 코드
 MERGE INTO LocationCodeSeconds(code, label) VALUES
+(0,'전체'),
 (101000,'서울전체'),
 (101010,'강남구'),
 (101020,'강동구'),
@@ -562,6 +564,7 @@ MERGE INTO LocationCodeSeconds(code, label) VALUES
 -- 마지막 전체 지역 코드
 
 MERGE INTO LocationCodeTotal (code, label, code_seconds, code_first) VALUES
+(0,'전체',0,0),
 (101000,'서울전체',101000,101000),
 (101010,'강남구',101010,101000),
 (101020,'강동구',101020,101000),

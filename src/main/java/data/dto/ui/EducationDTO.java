@@ -1,4 +1,12 @@
-package data.dto;
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  data.dto.ui.CodeDTO
+ *  data.dto.ui.EducationDTO
+ *  lombok.Generated
+ */
+package data.dto.ui;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,7 +15,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class EducationDTO extends CodeDTO {
 
-	@Override
 	public String toString() {
 		return label;
 	}

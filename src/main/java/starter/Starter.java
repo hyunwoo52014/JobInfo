@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-	"data.dao", "view"
+	"data.dao","data.bundle", "view", "event"
 })
 @MapperScan("data.dao")
 public class Starter {
@@ -18,10 +18,9 @@ public class Starter {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new SpringApplicationBuilder()
 		.sources(Starter.class)
-		.headless(false)
-		.run(args);
+		.headless(false).run(args);
 		
-		JFrame frame = (JFrame) context.getBean("ResultWindow");
+		JFrame frame = (JFrame) context.getBean("FrameWindow");
 		frame.setVisible(true);
 	}
 }

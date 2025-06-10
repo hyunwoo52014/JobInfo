@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import data.dto.BusinessCodeDTO;
-import data.dto.EducationDTO;
-import data.dto.IndustryCodeDTO;
-import data.dto.IndustryRootCodeDTO;
-import data.dto.JobNOccupationDTO;
-import data.dto.LocationCodeFirstDTO;
-import data.dto.LocationCodeSecondsDTO;
-import data.dto.LocationCodeTotalDTO;
-import data.dto.SalaryDTO;
-import data.dto.WorkTypeDTO;
+import data.dto.ui.BusinessCodeDTO;
+import data.dto.ui.EducationDTO;
+import data.dto.ui.IndustryCodeDTO;
+import data.dto.ui.IndustryRootCodeDTO;
+import data.dto.ui.JobCodeDTO;
+import data.dto.ui.LocationCodeFirstDTO;
+import data.dto.ui.LocationCodeSecondsDTO;
+import data.dto.ui.LocationCodeTotalDTO;
+import data.dto.ui.OccupationCodeDTO;
+import data.dto.ui.SalaryDTO;
+import data.dto.ui.SortLabelDTO;
+import data.dto.ui.WorkTypeDTO;
 
 @Repository
 public class UIDataLabelRepository {
@@ -60,7 +62,15 @@ public class UIDataLabelRepository {
 		return this.mapper.getBusinessCodeAll();
 	}
 	
-	public List<JobNOccupationDTO> getJobNOccupationAll() {
-		return this.mapper.getJobNOccupationAll();
+	public List<JobCodeDTO> getJobCodeAll() {
+		return this.mapper.getJobCodeAll();
+	}
+	
+	public 	List<OccupationCodeDTO> getOccupationCodeAll() {
+		return this.mapper.getOccupationCodeAll();
+	}
+
+	public List<SortLabelDTO> getSortLabelAll(){
+		return this.mapper.getSortLabelAll();
 	}
 }

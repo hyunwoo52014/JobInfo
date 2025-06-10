@@ -1,6 +1,7 @@
 -- 산업/업종 코드표
 -- 프로그램 내에서 대분류로 임의로 지정
 MERGE INTO IndustryRootCode(code, label) VALUES
+(0,'전체'),
 (1,'서비스업'),
 (2,'제조·화학'),
 (3,'IT·웹·통신'),
@@ -14,6 +15,7 @@ MERGE INTO IndustryRootCode(code, label) VALUES
 
 -- 중분류
 MERGE INTO IndustryCode(code, label, root_code) VALUES
+(0,'전체',0),
 (108,'호텔·여행·항공',1),
 (109,'외식업·식음료',1),
 (111,'시설관리·경비·용역',1),
@@ -85,6 +87,7 @@ MERGE INTO IndustryCode(code, label, root_code) VALUES
 
 -- 소분류
 MERGE INTO BusinessCode(code, label, industry_code) VALUES
+(0,'전체',0),
 (10803,'호텔',108),
 (10804,'콘도',108),
 (10805,'카지노',108),

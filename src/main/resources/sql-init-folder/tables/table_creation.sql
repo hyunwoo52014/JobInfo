@@ -1,6 +1,6 @@
 -- 테이블 선언
 -- 근무형태/학력/연봉 코드
-CREATE TABLE IF NOT EXISTS JoBType (
+CREATE TABLE IF NOT EXISTS JobType (
 	code INT PRIMARY KEY,
 	label VARCHAR(50)
 );
@@ -62,17 +62,30 @@ CREATE TABLE IF NOT EXISTS BusinessCode (
 );
 
 -- 직무/직업 코드표
-CREATE TABLE IF NOT EXISTS JobNOccupation (
-	root_code INT,
-	occupation_label VARCHAR(50),
+
+CREATE TABLE IF NOT EXISTS OccupationCode (
 	code INT PRIMARY KEY,
-	job_label VARCHAR(50)
+	label VARCHAR(50)
 );
+
+CREATE TABLE IF NOT EXISTS JobCode (
+	code INT PRIMARY KEY,
+	label VARCHAR(50),
+	root_code INT,
+	FOREIGN KEY (root_code)
+	REFERENCES OccupationCode(code) ON UPDATE CASCADE
+);
+
 
 -- API관련 데이터
 CREATE TABLE IF NOT EXISTS ApiTable (
 	orderValue INT PRIMARY KEY,
 	apiKey VARCHAR(100),
-	headerValue VARCHAR(50),
+	headerValue VARCHAR(50)
+);
 
+-- 정렬 라벨
+CREATE TABLE IF NOT EXISTS SortLabel (
+	abbreviation VARCHAR(2) PRIMARY KEY,
+	label VARCHAR(50)
 );
