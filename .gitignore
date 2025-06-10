@@ -5,11 +5,11 @@
 /bin/
 /data/
 /logs/
-/src/main/resources/sql-init-folder/datas/*.sql
+#/src/main/resources/sql-init-folder/datas/*.sql
 
 #제외파일
-application-*.properties
-logback-spring.xml
+#application-*.properties
+#logback-spring.xml
 .classpath
 .factorypath
 .project
