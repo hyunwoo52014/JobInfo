@@ -1,0 +1,16 @@
+#제외폴더
+/target/
+/.settings/
+/bin/
+/data/
+/logs/
+/src/main/resources/**
+
+#제외파일
+.classpath
+.factorypath
+.project
+
+#추적허용
+!src/main/resources/mappers/*.xml
+!src/main/resources/application.properties
