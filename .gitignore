@@ -12,5 +12,6 @@
 .project
 
 #추적허용
-!src/main/resources/mappers/*.xml
-!src/main/resources/application.properties
+!/src/main/resources/mappers/apiData.xml
+!/src/main/resources/mappers/guiLabels.xml
+!/src/main/resources/application.properties
