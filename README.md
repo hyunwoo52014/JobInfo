@@ -1,6 +1,6 @@
 # JobInfo
-채용 공고를 볼 수 있는 GUI 프로그램</br>
-현재 사람인 쪽만 지원
+채용 공고를 볼 수 있는 GUI 프로그램
+사람인, 고용24 지원
 
 ## 다운로드
 https://github.com/merapa/JobInfo/releases

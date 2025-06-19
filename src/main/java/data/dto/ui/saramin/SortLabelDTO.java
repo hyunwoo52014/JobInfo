@@ -5,7 +5,7 @@
  *  data.dto.ui.SortLabelDTO
  *  lombok.Generated
  */
-package data.dto.ui;
+package data.dto.ui.saramin;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

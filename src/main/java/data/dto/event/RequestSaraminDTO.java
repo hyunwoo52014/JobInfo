@@ -2,15 +2,16 @@ package data.dto.event;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import data.dto.ui.SortLabelDTO;
-import data.dto.ui.JobCodeDTO;
-import data.dto.ui.OccupationCodeDTO;
-import data.dto.ui.IndustryCodeDTO;
-import data.dto.ui.LocationCodeDTO;
-import data.dto.ui.EducationDTO;
-import data.dto.ui.WorkTypeDTO;
+
 import javax.swing.JCheckBox;
 import data.dto.api.ApiDTO;
+import data.dto.ui.saramin.EducationDTO;
+import data.dto.ui.saramin.IndustryCodeDTO;
+import data.dto.ui.saramin.JobCodeDTO;
+import data.dto.ui.saramin.LocationCodeDTO;
+import data.dto.ui.saramin.OccupationCodeDTO;
+import data.dto.ui.saramin.SortLabelDTO;
+import data.dto.ui.saramin.WorkTypeDTO;
 
 @Data
 @EqualsAndHashCode(callSuper = false)

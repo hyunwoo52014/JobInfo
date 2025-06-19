@@ -1,4 +1,4 @@
-package view;
+package view.bundle.panels.elements;
 
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -28,41 +28,41 @@ import org.springframework.stereotype.Component;
 
 import data.bundle.SaraminComponentBundle;
 import data.dao.ApiRepository;
-import data.dao.UIDataLabelRepository;
+import data.dao.UISaraminDataLabelRepository;
 import data.dto.api.ApiDTO;
 import data.dto.event.RequestSaraminDTO;
-import data.dto.ui.EducationDTO;
-import data.dto.ui.IndustryCodeDTO;
-import data.dto.ui.IndustryRootCodeDTO;
-import data.dto.ui.JobCodeDTO;
-import data.dto.ui.LocationCodeDTO;
-import data.dto.ui.LocationCodeFirstDTO;
-import data.dto.ui.LocationCodeSecondsDTO;
-import data.dto.ui.LocationCodeTotalDTO;
-import data.dto.ui.OccupationCodeDTO;
-import data.dto.ui.SortLabelDTO;
-import data.dto.ui.WorkTypeDTO;
+import data.dto.ui.saramin.EducationDTO;
+import data.dto.ui.saramin.IndustryCodeDTO;
+import data.dto.ui.saramin.JobCodeDTO;
+import data.dto.ui.saramin.LocationCodeDTO;
+import data.dto.ui.saramin.LocationCodeFirstDTO;
+import data.dto.ui.saramin.LocationCodeSecondsDTO;
+import data.dto.ui.saramin.LocationCodeTotalDTO;
+import data.dto.ui.saramin.OccupationCodeDTO;
+import data.dto.ui.saramin.SortLabelDTO;
+import data.dto.ui.saramin.WorkTypeDTO;
 import event.JobListApiService;
 import event.SaraminRestApiEvent;
 import lombok.extern.slf4j.Slf4j;
+import view.CardLayoutNavigator;
+import view.GridBagLayoutBuilder;
+import view.ScreenSizeConstraints;
+import view.bundle.panels.ViewPanelBundles.PanelName;
 
 @Slf4j
-@Component(value = "MenuPanel")
-public class MenuBarComponents extends JPanel {
+@Component(value = "SaraminUiPanel")
+public class SaraminUiPanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1776845072403779282L;
 	private HashMap<String, JComponent> registeredComponent;
 	private RequestSaraminDTO requestDTO;
 	GridBagLayoutBuilder builder;
-	UIDataLabelRepository uiRepository;
+	UISaraminDataLabelRepository uiRepository;
 	ApiRepository apiRepository;
 	JobListApiService apiService;
 	CardLayoutNavigator navigator;
 
-	public MenuBarComponents(
+	public SaraminUiPanel(
 			ScreenSizeConstraints sizeConstraints,
 			SaraminComponentBundle bundle,
 			JobListApiService apiService,
@@ -95,6 +95,7 @@ public class MenuBarComponents extends JPanel {
 		industryCdSection();
 		optionalSection();
 		extraSection();
+		footerSection();
 		
 		Set<Entry<String, JComponent>> componentSet = this.registeredComponent.entrySet();
 		
@@ -102,7 +103,7 @@ public class MenuBarComponents extends JPanel {
 			JComponent component = entry.getValue();
 			
 			if(component instanceof JLabel l) {
-				l.setHorizontalAlignment(JLabel.RIGHT);
+				l.setHorizontalAlignment(JLabel.CENTER);
 			}
 		}
 	}
@@ -138,7 +139,8 @@ public class MenuBarComponents extends JPanel {
 		JButton button = new JButton("검색");
 		button.addActionListener((e) -> {
 			this.apiService.saraminApiService(new SaraminRestApiEvent(this, this.requestDTO));
-			this.navigator.show("ResultTablePanel");
+			this.navigator.setPrevName(PanelName.SARAMIN.getName());
+			this.navigator.show(PanelName.RESULTTABLE.getName());
 		});
 		
 		this.registeredComponent.put("KeyWordLabel", keyWord_label);
@@ -159,7 +161,6 @@ public class MenuBarComponents extends JPanel {
 		ButtonGroup group = new ButtonGroup();
 		group.add(all_bbs_gb);
 		group.add(saramin_bbs_gb);
-		//all_bbs_gb.setSelected(true);
 		
 		all_bbs_gb.addItemListener((e) -> {
 			this.requestDTO.setBbs_gb(false);
@@ -541,10 +542,16 @@ public class MenuBarComponents extends JPanel {
 		this.builder.gridx(4).gridy(10).configure(count_label);
 		this.builder.gridx(5).gridy(10).gridwidth(2).configure(countField);
 
-		/* girdbaglayout 한계로 인한 더미 컴포넌트 추가 : 해당 컴포넌트가 맨 아래에서
-		 * 빈공간으로 존재하며 기존 컴포넌트를 위쪽으로 올려줌
-		*/
-		this.builder.gridx(0).gridy(11).weighty(1).gridwidth(6).configure((Container) Box.createVerticalGlue());
+		
 	}
 
+	private void footerSection() {
+		JButton button = new JButton("이전화면");
+		button.addActionListener((e) -> {
+			navigator.show(PanelName.WELCOME.getName());
+		});
+		
+		this.builder.gridx(0).gridy(11).weighty(1).gridwidth(6).configure((Container) Box.createVerticalGlue());
+		this.builder.gridx(0).gridy(12).weighty(0).gridwidth(7).configure(button);;
+	}
 }

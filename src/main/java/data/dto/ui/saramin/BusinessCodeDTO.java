@@ -2,21 +2,22 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
+ *  data.dto.ui.BusinessCodeDTO
  *  data.dto.ui.CodeDTO
- *  data.dto.ui.IndustryRootCodeDTO
  *  lombok.Generated
  */
-package data.dto.ui;
+package data.dto.ui.saramin;
 
+import data.dto.ui.CodeDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class IndustryRootCodeDTO extends CodeDTO {
-	
-	public String toString() {
-		return this.label;
-	}
-	
+public class BusinessCodeDTO extends CodeDTO {
+    int industry_code;
+
+    public String toString() {
+        return label;
+    }
 }

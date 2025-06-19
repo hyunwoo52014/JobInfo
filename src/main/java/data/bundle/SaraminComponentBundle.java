@@ -10,15 +10,16 @@
 package data.bundle;
 
 import data.dao.ApiRepository;
-import data.dao.UIDataLabelRepository;
+import data.dao.UISaraminDataLabelRepository;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class SaraminComponentBundle {
     public final ApiRepository apiRepository;
-    public final UIDataLabelRepository uiRepository;
+    public final UISaraminDataLabelRepository uiRepository;
 
-    public SaraminComponentBundle(ApiRepository apiRepository, UIDataLabelRepository uiRepository) {
+    public SaraminComponentBundle(ApiRepository apiRepository, UISaraminDataLabelRepository uiRepository) {
         this.apiRepository = apiRepository;
         this.uiRepository = uiRepository;
     }

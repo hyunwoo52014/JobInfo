@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="data.dao.UIDataLabelMapper">
+<mapper namespace="data.dao.UISaraminDataLabelMapper">
 	
 	<resultMap type="data.dto.ui.CodeDTO" id="BaseCodeDTO">
 		<result column="code" property="code"/>
@@ -12,27 +12,27 @@
 		code, label
 	</sql>
 	
-	<resultMap type="data.dto.ui.WorkTypeDTO" id="workTypeMap" extends="BaseCodeDTO" />
-	<resultMap type="data.dto.ui.EducationDTO" id="educationMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.SalaryDTO" id="salaryMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.LocationCodeTotalDTO" id="locationCodeTotalMap">
+	<resultMap type="data.dto.ui.saramin.WorkTypeDTO" id="workTypeMap" extends="BaseCodeDTO" />
+	<resultMap type="data.dto.ui.saramin.EducationDTO" id="educationMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.SalaryDTO" id="salaryMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.LocationCodeTotalDTO" id="locationCodeTotalMap">
 		<result column="code_first" property="first_code"/>
 		<result column="code_seconds" property="seconds_code"/>
 	</resultMap>
-	<resultMap type="data.dto.ui.LocationCodeFirstDTO" id="locationCodeFirstMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.LocationCodeSecondsDTO" id="locationCodeSecondsMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.IndustryRootCodeDTO" id="industryRootCodeMap"  extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.IndustryCodeDTO" id="industryCodeMap" extends="BaseCodeDTO">
+	<resultMap type="data.dto.ui.saramin.LocationCodeFirstDTO" id="locationCodeFirstMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.LocationCodeSecondsDTO" id="locationCodeSecondsMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.IndustryRootCodeDTO" id="industryRootCodeMap"  extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.IndustryCodeDTO" id="industryCodeMap" extends="BaseCodeDTO">
 		<result column="root_code" property="root_code"/>
 	</resultMap>
-	<resultMap type="data.dto.ui.BusinessCodeDTO" id="businessCodeMap" extends="BaseCodeDTO">
+	<resultMap type="data.dto.ui.saramin.BusinessCodeDTO" id="businessCodeMap" extends="BaseCodeDTO">
 		<result column="industry_code" property="industry_code"/>
 	</resultMap>
-	<resultMap type="data.dto.ui.JobCodeDTO" id="jobCodeMap">
+	<resultMap type="data.dto.ui.saramin.JobCodeDTO" id="jobCodeMap">
 		<result column="root_code" property="root_code"/>
 	</resultMap>
-	<resultMap type="data.dto.ui.OccupationCodeDTO" id="occupationCodeMap" extends="BaseCodeDTO"/>
-	<resultMap type="data.dto.ui.SortLabelDTO" id="sortLabelMap">
+	<resultMap type="data.dto.ui.saramin.OccupationCodeDTO" id="occupationCodeMap" extends="BaseCodeDTO"/>
+	<resultMap type="data.dto.ui.saramin.SortLabelDTO" id="sortLabelMap">
 		<result column="abbreviation" property="abbreviation"/>
 		<result column="label" property="label"/>
 	</resultMap>

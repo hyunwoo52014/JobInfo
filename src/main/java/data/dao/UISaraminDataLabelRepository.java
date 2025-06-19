@@ -4,25 +4,25 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import data.dto.ui.BusinessCodeDTO;
-import data.dto.ui.EducationDTO;
-import data.dto.ui.IndustryCodeDTO;
-import data.dto.ui.IndustryRootCodeDTO;
-import data.dto.ui.JobCodeDTO;
-import data.dto.ui.LocationCodeFirstDTO;
-import data.dto.ui.LocationCodeSecondsDTO;
-import data.dto.ui.LocationCodeTotalDTO;
-import data.dto.ui.OccupationCodeDTO;
-import data.dto.ui.SalaryDTO;
-import data.dto.ui.SortLabelDTO;
-import data.dto.ui.WorkTypeDTO;
+import data.dto.ui.saramin.BusinessCodeDTO;
+import data.dto.ui.saramin.EducationDTO;
+import data.dto.ui.saramin.IndustryCodeDTO;
+import data.dto.ui.saramin.IndustryRootCodeDTO;
+import data.dto.ui.saramin.JobCodeDTO;
+import data.dto.ui.saramin.LocationCodeFirstDTO;
+import data.dto.ui.saramin.LocationCodeSecondsDTO;
+import data.dto.ui.saramin.LocationCodeTotalDTO;
+import data.dto.ui.saramin.OccupationCodeDTO;
+import data.dto.ui.saramin.SalaryDTO;
+import data.dto.ui.saramin.SortLabelDTO;
+import data.dto.ui.saramin.WorkTypeDTO;
 
 @Repository
-public class UIDataLabelRepository {
+public class UISaraminDataLabelRepository {
 
-	private UIDataLabelMapper mapper;
+	private UISaraminDataLabelMapper mapper;
 
-	public UIDataLabelRepository(UIDataLabelMapper mapper) {
+	public UISaraminDataLabelRepository(UISaraminDataLabelMapper mapper) {
 		this.mapper = mapper;
 	}
 	

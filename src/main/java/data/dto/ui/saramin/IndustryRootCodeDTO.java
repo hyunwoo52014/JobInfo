@@ -3,16 +3,21 @@
  * 
  * Could not load the following classes:
  *  data.dto.ui.CodeDTO
- *  data.dto.ui.LocationCodeDTO
+ *  data.dto.ui.IndustryRootCodeDTO
  *  lombok.Generated
  */
-package data.dto.ui;
+package data.dto.ui.saramin;
 
+import data.dto.ui.CodeDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public abstract class LocationCodeDTO extends CodeDTO {
-    
+public class IndustryRootCodeDTO extends CodeDTO {
+	
+	public String toString() {
+		return this.label;
+	}
+	
 }

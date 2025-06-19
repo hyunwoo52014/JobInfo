@@ -135,8 +135,7 @@ public class SaraminRestApiEvent extends ApplicationEvent {
         return builder.toString();
     }
 
-    @Generated
-    public RequestSaraminDTO getDto() {
+    public RequestSaraminDTO getDTO() {
         return this.dto;
     }
 }

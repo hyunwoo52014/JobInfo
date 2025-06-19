@@ -6,7 +6,6 @@ package data.dto.event;
 
 import jakarta.xml.bind.annotation.XmlValue;
 import lombok.Data;
-import lombok.Generated;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;

@@ -3,18 +3,20 @@
  * 
  * Could not load the following classes:
  *  data.dto.ui.CodeDTO
- *  data.dto.ui.SalaryDTO
+ *  data.dto.ui.OccupationCodeDTO
  *  lombok.Generated
  */
-package data.dto.ui;
+package data.dto.ui.saramin;
 
+import data.dto.ui.CodeDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SalaryDTO extends CodeDTO {
+public class OccupationCodeDTO extends CodeDTO {
+	
 	public String toString() {
-		return this.label;
+		return label;
 	}
 }
